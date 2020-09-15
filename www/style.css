@@ -17,8 +17,8 @@
 }
 
 .div-container-content{
-    display: inline-grid;
-    grid-template-columns: 30% 180%;
+    display: grid;
+    grid-template-columns: 30% auto;
     grid-column-gap: 40px;
 }
 
@@ -47,5 +47,6 @@
 
 .product img{
     height: 50%;
-    width: 75%;
+    width: 50%;
+    padding: 5px;
 }
