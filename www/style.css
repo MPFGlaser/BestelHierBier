@@ -19,12 +19,14 @@
 .div-container-content{
     display: grid;
     grid-template-columns: 30% auto;
-    grid-column-gap: 40px;
+    /*grid-column-gap: 40px;*/
 }
 
 .grid-item-content{
     border-width: thin;
     border-style: solid;
+    max-width: 200px;
+    min-width: 180px;
 }
 
 .foundItems{
