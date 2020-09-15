@@ -22,7 +22,8 @@
         width: 100%;
         margin: auto;
         border-width: thin;
-        border-style: solid
+        border-style: solid;
+        font-size: 200%;
     }
 
     .product img{
