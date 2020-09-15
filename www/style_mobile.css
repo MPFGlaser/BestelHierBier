@@ -8,6 +8,11 @@
         text-align: center;
     }
 
+    .mobileLogo img{
+        min-height: 150px;
+        min-width: auto;
+    }
+
     .grid-item-content{
         display: none;
     }
