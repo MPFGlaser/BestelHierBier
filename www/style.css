@@ -49,7 +49,9 @@
 }
 
 .product img{
-    height: 50%;
+    height: auto;
     width: 50%;
+    max-height: auto;
+    max-width: 75px;
     padding: 5px;
 }
