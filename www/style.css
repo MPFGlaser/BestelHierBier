@@ -18,7 +18,7 @@
 
 .div-container-content{
     display: inline-grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 30% 180%;
     grid-column-gap: 40px;
 }
 
@@ -27,10 +27,25 @@
     border-style: solid;
 }
 
-.filterMenu{
-    width: 20%;
+.foundItems{
+    border-width: thin;
+    border-style: solid;
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: 10px;
+    padding: 10px;
 }
 
-.foundItems{
-    width: 80%;
+.product{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    margin: auto;
+    border-width: thin;
+    border-style: solid
+}
+
+.product img{
+    height: 50%;
+    width: 75%;
 }
