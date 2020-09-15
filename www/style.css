@@ -5,7 +5,8 @@
     border-style: solid;
 }
 
-.grid-item-top{
+.mobileLogo{
+    display: none;
 }
 
 #title{
@@ -18,8 +19,8 @@
 
 .div-container-content{
     display: grid;
-    grid-template-columns: 30% auto;
-    /*grid-column-gap: 40px;*/
+    grid-template-columns: auto auto;
+    grid-column-gap: 1.5%;
 }
 
 .grid-item-content{
@@ -48,7 +49,9 @@
 }
 
 .product img{
-    height: 50%;
+    height: auto;
     width: 50%;
+    max-height: auto;
+    max-width: 75px;
     padding: 5px;
 }
