@@ -3,6 +3,7 @@
     grid-template-columns: auto auto auto;
     border-width: thin;
     border-style: solid;
+    
 }
 
 .grid-item-top{
@@ -18,8 +19,8 @@
 
 .div-container-content{
     display: grid;
-    grid-template-columns: 30% auto;
-    /*grid-column-gap: 40px;*/
+    grid-template-columns: auto 100%;
+    grid-column-gap: 40px;
 }
 
 .grid-item-content{
