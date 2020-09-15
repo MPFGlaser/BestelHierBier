@@ -20,7 +20,7 @@
 
 .div-container-content{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 200px auto;
     grid-column-gap: 1.5%;
 }
 

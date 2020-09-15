@@ -6,6 +6,8 @@
     .mobileLogo{
         display: block;
         text-align: center;
+        border-width: thin;
+        border-style: solid;
     }
 
     .mobileLogo img{
