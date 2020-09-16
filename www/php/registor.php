@@ -1,7 +1,8 @@
 <?php
     session_start();
-    $_SESSION['firstName'] = $_POST['firstName'];
-    $_SESSION['lastName'] = $_POST['lastName'];
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,21 @@
     </head>
     <body>
         <?php
-            echo "Hello ".$_SESSION['firstName']." ".$_SESSION['lastName'];
+        include('./opendb.php');
+        try{
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "SELECT * FROM test";
+            $sqlSent = $db->prepare($sql);
+            $sqlSent->execute();
+            $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
+            foreach($results as $res){
+                echo $res;
+            }
+        }
+        catch(PDOException $ex) {
+            die("Error: ". $ex->getMessage());
+        }
         ?>
     </body>
 </html>
