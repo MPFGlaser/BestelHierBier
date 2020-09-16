@@ -1,7 +1,7 @@
 <?php
     session_start();
     $_SESSION['firstName'] = $_POST['firstName'];
-    $_SESSION['lastName'] = $_POST['lastName']
+    $_SESSION['lastName'] = $_POST['lastName'];
 ?>
 <!DOCTYPE html>
 <html>
