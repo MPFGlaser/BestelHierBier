@@ -3,7 +3,6 @@
     grid-template-columns: auto auto auto;
     border-width: thin;
     border-style: solid;
-
 }
 
 .mobileLogo{
@@ -14,8 +13,30 @@
     text-align: center;
 }
 
-#info{
+.info{
     float: right;
+}
+
+.loginBtn {
+    float: right;
+	background:linear-gradient(to bottom, #d6d6d6 5%, #bfbfbf 100%);
+	background-color:#d6d6d6;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:23px;
+	font-weight:bold;
+	padding:32px 32px;
+	text-decoration:none;
+}
+.loginBtn:hover {
+	background:linear-gradient(to bottom, #bfbfbf 5%, #d6d6d6 100%);
+	background-color:#bfbfbf;
+}
+.loginBtn:active {
+	position:relative;
+	top:1px;
 }
 
 .div-container-content{

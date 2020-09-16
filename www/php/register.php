@@ -1,41 +1,33 @@
 <?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Register</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <link rel="stylesheet" type="text/css" href="../css/style_mobile.css">
-    </head>
-    <body>
-        <form method="POST" name="registerForm">
-            <p>Username: <input type="text" name="userName"/></p>
-            <p>Password: <input type="password" name="passWord"/></p>
-            <p>Email: <input type="text" name="email"/></p>
-            <button type="submit" name="submitRegister">Submit</button>
-        </form>
+try{
+    function registerNewUser($userName, $passWord, $email){
+        include('./opendb.php');
 
-        <?php
-            function register(){
-                include('./opendb.php');
-                try{
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = "INSERT INTO Users (UserName, PassWord, EMail) VALUES ('".$_POST["userName"]."','".md5($_POST["passWord"])."','".$_POST["email"]."')";
-                    $sqlSent = $db->prepare($sql);
-                    $sqlSent->execute();
-                }
-                catch(PDOException $ex) {
-                    die("Error: ". $ex->getMessage());
-                }
-            }
-            if(isset($_POST['submitRegister'])){
-                register();
-            }
-        ?>
-    </body>
-</html>
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO Users (UserName, PassWord, EMail) VALUES ('".$userName."', '".md5($passWord)."', '".$email."')";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $_SESSION['UserName'] = $userName;
+        return true;
+    }
+
+    function loginUser($userName, $passWord){
+        include('./opendb.php');
+
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT ID FROM Users WHERE UserName = '".$userName."' AND PassWord = '".md5($passWord)."'";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
+        if(isset($results['ID'])){
+            $_SESSION['UserName'] = $userName;
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+catch(PDOException $ex) {
+    die("Error: ". $ex->getMessage());
+}
+?>

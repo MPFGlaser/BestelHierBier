@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,13 @@
                 <p id="title">Bestel Hier Bier</p>
             </div>
             <div class="grid-item-top">
-                <p id="info">Personal information</p>
+                <?php
+                    if($_SESSION['login'] === true){
+                        echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
+                    }else{
+                        echo '<a href="/php/login.php" class="loginBtn">Login/Register</a>';
+                    }
+                ?>
             </div>
         </div>
         <div class="mobileLogo">
@@ -105,5 +112,12 @@
                 </div>
             </div>
         </div>
+        <?php
+        //Temp to test login/register
+        echo "<form method='post'><button name='reset'>Reset Session</button></form>";
+        if(isset($_POST['reset'])){
+            session_destroy();
+        }
+        ?>
     </body>
 </html>
