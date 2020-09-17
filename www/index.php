@@ -20,7 +20,7 @@
                     if($_SESSION['login'] === true){
                         echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
                     }else{
-                        echo '<a href="/php/login.php" class="loginBtn">Login/Register</a>';
+                        echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
                     }
                 ?>
             </div>
