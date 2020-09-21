@@ -15,5 +15,9 @@
         function get_name(){
             return $this->_username;
         }
+
+        function get_password(){
+            return $this->_password;
+        }
     }
 ?>
