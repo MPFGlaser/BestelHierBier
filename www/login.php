@@ -36,7 +36,7 @@ include('php/register.php');
                 <form method="POST" name="loginForm">
                     <p>Username: <input type="text" name="userName"/></p>
                     <p>Password: <input type="password" name="passWord"/></p>
-                    <button type="submit" name="submitLogin">Submit</button>
+                    <button type="submit" name="submitLogin">Login</button>
                 </form>
             </div>
             <div class="loginContent">
@@ -44,7 +44,7 @@ include('php/register.php');
                     <p>Username: <input type="text" name="userName"/></p>
                     <p>Password: <input type="password" name="passWord"/></p>
                     <p>Email: <input type="text" name="email"/></p>
-                    <button type="submit" name="submitRegister">Submit</button>
+                    <button type="submit" name="submitRegister">Register</button>
                 </form>
             </div>
         </div>
