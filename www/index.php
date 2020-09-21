@@ -1,6 +1,13 @@
 <?php
     session_start();
+
+    //For error viewing
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     include('php/classes/user.php');
+    include('php/tempBier.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,13 +27,14 @@
             </div>
             <div class="grid-item-top">
                 <?php
-                    if($_SESSION['login'] === true){
-                        // echo '<p class="info">Welkom '.$user->get_name().'</p>';
-                        echo var_dump($GLOBALS);
-                        echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
-                    }else{
-                        echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
-                    }
+                    // if($_SESSION['login'] === true){
+                    //     // echo '<p class="info">Welkom '.$user->get_name().'</p>';
+                    //     echo var_dump($GLOBALS);
+                    //     echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
+                    // }else{
+                    //     echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
+                    // }
+                    echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
                 ?>
             </div>
         </div>
@@ -60,7 +68,22 @@
                 </div>
             </div>
             <div class="foundItems">
-                <div class="product">
+                <?php
+                    foreach($beers as $product){
+                        echo '<div class="product">
+                            <div class="productImage">
+                                <img src="images/'.$product[0].'" alt="Temp Product"/>
+                            </div>
+                            <div class="productDescription">
+                                <p>'.$product[1].'</p>
+                            </div>
+                            <div class="buttons">
+                                <button>Purchase</button>
+                            </div>
+                        </div>';
+                    }
+                ?>
+                <!-- <div class="product">
                     <div class="productImage">
                         <img src="images/tempProduct.png" alt="Temp Product"/>
                     </div>
@@ -114,7 +137,7 @@
                     <div class="buttons">
                         <button>Purchase</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <?php

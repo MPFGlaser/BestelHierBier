@@ -29,13 +29,13 @@
         $loggedIn = false;
         foreach ($users as $checkUser) {
             if($userName === $checkUser->get_name() && $passWord === $checkUser->get_password()){
-                echo "Login gelukt";
+                echo "Welcome ".$checkUser->get_name();
                 $loggedIn = true;
                 break;
             }
         }
         if(!$loggedIn){
-            echo "Niet gelukt";
+            echo "Invlaid Credentials";
         }
         // try{
         //     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
