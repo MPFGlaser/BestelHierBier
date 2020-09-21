@@ -1,8 +1,10 @@
 <?php
     function registerNewUser($userName, $passWord, $email){
         include('opendb.php');
-        include('classes/userClass.php');
-        include('classes/userArray.php');
+        include_once('classes/userClass.php');
+        include_once('classes/userArray.php');
+
+        array_push($users, new User($userName, $email, $passWord));
         // try{
         //     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //     $sql = "INSERT INTO Users (UserName, PassWord, EMail) VALUES ('".$userName."', '".md5($passWord)."', '".$email."')";
@@ -21,14 +23,19 @@
 
     function loginUser($userName, $passWord){
         include('opendb.php');
-        include('classes/userClass.php');
-        include('classes/userArray.php');
+        include_once('classes/userClass.php');
+        include_once('classes/userArray.php');
+
+        $loggedIn = false;
         foreach ($users as $checkUser) {
             if($userName === $checkUser->get_name() && $passWord === $checkUser->get_password()){
                 echo "Login gelukt";
-            }else{
-                echo "Niet gelukt";
+                $loggedIn = true;
+                break;
             }
+        }
+        if(!$loggedIn){
+            echo "Niet gelukt";
         }
         // try{
         //     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
