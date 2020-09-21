@@ -1,17 +1,19 @@
 <?php
     class User{
-        public $username;
-        public $email;
-        public $password;
+        protected $_username;
+        protected $_email;
+        protected $_password;
+
+        // protected $_user;
 
         function __construct($username, $email, $password){
-            $this->username = $username;
-            $this->email = $email;
-            $this->password = $password;
+            $this->_username = $username;
+            $this->_email = $email;
+            $this->_password = $password;
         }
 
         function get_name(){
-            return $this->username;
+            return $this->_username;
         }
     }
 ?>
