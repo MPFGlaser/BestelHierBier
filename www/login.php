@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include('php/register.php');
+include_once('php/register.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,22 +50,23 @@ include('php/register.php');
         </div>
         <?php
             if(isset($_POST['submitLogin'])){
-                if(loginUser($_POST['userName'], $_POST['passWord'])){
-                    $_SESSION['login'] = true;
-                    header("Location: https://bestelhierbier.nl");
-                    die();
-                }else{
-                    echo "Something went wrong in login";
-                }
+                loginUser($_POST['userName'], $_POST['passWord']);
+                // if(loginUser($_POST['userName'], $_POST['passWord'])){
+                    // $_SESSION['login'] = true;
+                    // header("Location: https://bestelhierbier.nl");
+                    // die();
+                // }else{
+                    // echo "Something went wrong in login";
+                // }
             }
             if(isset($_POST['submitRegister'])){
-                if(registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])){
-                    $_SESSION['login'] = true;
-                    header("Location: https://bestelhierbier.nl");
-                    die();
-                }else{
-                    echo "Something went wrong in register";
-                }
+                // if(registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])){
+                    // $_SESSION['login'] = true;
+                    // header("Location: https://bestelhierbier.nl");
+                    // die();
+                // }else{
+                    // echo "Something went wrong in register";
+                // }
             }
         ?>
     </body>
