@@ -19,10 +19,10 @@ include('php/register.php');
     <body>
         <div class="grid-container-top">
             <div class="grid-item">
-                <img src="../images/tempLogo.png" alt="Temp Logo"/>
+                <a href="/"><img src="../images/tempLogo.png" alt="Temp Logo"/></a>
             </div>
             <div class="grid-item-top">
-                <p id="title">Bestel Hier Bier</p>
+                <p id="title"><a href="/">Bestel Hier Bier</a></p>
             </div>
             <div class="grid-item-top">
             </div>
