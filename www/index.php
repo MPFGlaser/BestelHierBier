@@ -30,7 +30,6 @@
                         echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
                         echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
 
-
                         if(isset($_POST['reset'])){
                             session_destroy();
                         }
