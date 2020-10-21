@@ -2,22 +2,20 @@
     class User{
         protected $_username;
         protected $_email;
-        protected $_password;
+        protected $_admin;
 
-        // protected $_user;
-
-        function __construct($username, $email, $password){
+        function __construct($username, $email, $admin){
             $this->_username = $username;
             $this->_email = $email;
-            $this->_password = $password;
+            $this->_admin = $admin;
         }
 
-        function get_name(){
+        public function get_name(){
             return $this->_username;
         }
 
-        function get_password(){
-            return $this->_password;
+        function is_admin(){
+            return $this->_admin;
         }
     }
 ?>

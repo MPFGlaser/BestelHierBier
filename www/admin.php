@@ -26,10 +26,9 @@
             </div>
             <div class="grid-item-top">
                 <?php
-                    if(isset($_SESSION['User'])){
-                        $user = unserialize($_SESSION['User']);
+                    if(isset($_SESSION['login']) && $_SESSION['login'] == true){
                         echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                        echo '<p class="info">Welkom '.$user->get_name().'</p>';
+                        echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
 
                         if(isset($_POST['reset'])){
                             session_destroy();
