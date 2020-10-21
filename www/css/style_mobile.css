@@ -43,13 +43,13 @@
 
     .productPage {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 100%;
         width: auto;
         margin: auto;
         padding-top: 1%;
-        padding-right: 5%;
+        padding-right: 7%;
         padding-bottom: 1%;
-        padding-left: 5%;
+        padding-left: 7%;
         border-width: thin;
         border-style: solid;
     }
@@ -63,9 +63,7 @@
     }
     
     .productPageDescription {
-        /* position: relative; */
         font-size: 200%;
         width: 100%;
-        margin: 1px;
     }
 }
