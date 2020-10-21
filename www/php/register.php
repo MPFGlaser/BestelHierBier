@@ -9,8 +9,6 @@
             $sqlSent = $db->prepare($sql);
             $sqlSent->execute();
             $_SESSION['UserName'] = $userName;
-            // $_SESSION['user'] = new User($userName, $email, $passWord);
-            // $GLOBALS['user'] = new User($userName, $email, $passWord);
             global $user;
             $user = new User($userName, $email, $passWord);
             return true;
@@ -30,8 +28,6 @@
             $sqlSent->execute();
             $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
             if(isset($results['ID'])){
-                // $_SESSION['user'] = new User($userName, $email, md5($passWord));
-                // $GLOBALS['user'] = new User($userName, $email, $passWord);
                 global $user;
                 $user = new User($userName, $email, $passWord);
                 $_SESSION['UserName'] = $userName;
