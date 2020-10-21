@@ -59,17 +59,6 @@ include('php/opendb.php');
                 <input type="range" min="1" max="5" value="3">
                 </br>
                 <p>Category</p>
-                <!-- <input type="checkbox" name="Blond">
-                <label for="Blond">Blond</label></br>
-                <input type="checkbox" name="Dark">
-                <label for="Dark">Dark</label></br>
-                <input type="checkbox" name="Triple">
-                <label for="Triple">Triple</label></br>
-                <input type="checkbox" name="Quadruple">
-                <label for="Quadruple">Quadruple</label></br>
-                <input type="checkbox" name="IPA">
-                <label for="IPA">IPA</label></br> -->
-
                 <?php
                 try {
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -90,7 +79,6 @@ include('php/opendb.php');
                     die("Error: " . $ex->getMessage());
                 }
                 ?>
-
             </div>
         </div>
         <div class="foundItems">
@@ -108,6 +96,7 @@ include('php/opendb.php');
                     $category = $row["category"];
                     $imgURL = $row["imageURL"];
                     $id = $row["id"];
+                    $abv = $row["abv"];
 
             ?>
                     <div class="product">
@@ -115,7 +104,7 @@ include('php/opendb.php');
                             <img src=/images/<?= $imgURL ?> alt=<?= $name ?> />
                         </div>
                         <div class="productDescription">
-                            <p><?= $name ?></p><br>
+                            <p><?= $name ?> (<?=$abv?>)</p><br>
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
                         <div class="buttons">
@@ -127,7 +116,6 @@ include('php/opendb.php');
             } catch (PDOException $ex) {
                 die("Error: " . $ex->getMessage());
             }
-
             ?>
         </div>
     </div>
