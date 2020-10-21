@@ -27,10 +27,10 @@
             <div class="grid-item-top">
                 <?php
                     if(isset($_SESSION['login']) && $_SESSION['login'] == true){
-                        // echo '<p class="info">Welkom '.$user->get_name().'</p>';
-                        // echo var_dump($GLOBALS);
+                        echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
                         echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
-                        echo "<form method='post'><button name='reset'>Logout</button></form>";
+
+
                         if(isset($_POST['reset'])){
                             session_destroy();
                         }
