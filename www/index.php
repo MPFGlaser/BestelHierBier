@@ -10,7 +10,6 @@ include('php/opendb.php');
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Bestel Hier Bier</title>
