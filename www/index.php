@@ -103,6 +103,7 @@
                             $brewery = $row["brewery"];
                             $category = $row["category"];
                             $imgURL = $row["imageURL"];
+                            $id = $row["id"];
     
                             ?>
                             <div class="product">
@@ -114,7 +115,7 @@
                                 <p><?=$category?> by <?=$brewery?></p>
                             </div>
                             <div class="buttons">
-                                <button>Purchase</button>
+                                <button><a href="/product.php?id=<?=$id?>">Learn more</a></button>
                             </div>
                         </div>
                         <?php
