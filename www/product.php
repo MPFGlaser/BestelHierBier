@@ -67,16 +67,21 @@ include('php/opendb.php');
                 $imgURL = $beer['imageURL'];
 
         ?>
-                <div>
+                <div class="productPage">
                     <title><?= $name ?> by <?= $brewery ?> - Bestel Hier Bier</title>
-                    <h1><?= $name ?> - <?=$category?> (<?=$abv?>)</h1>
-                    <p><?=$brewery?>, <?=$country?></p>
-                    <div class="productImage">
-                        <img src=/images/<?= $imgURL ?> alt=<?= $name ?> />
+                    <div class="grid-item">
+                        <h1><?= $name ?> - <?= $category ?> (<?= $abv ?>)</h1>
+                        <!-- <p><?= $brewery ?>, <?= $country ?></p> -->
+                        <div class="productImage">
+                            <img src=/images/<?= $imgURL ?> alt="<?= $name ?>" />
+                        </div>
                     </div>
-                    <div>
-                        <h2>Description</h2>
+                    <div class="productPageDescription">
+                        <h4>Description</h4>
                         <p><?= $description ?></p>
+
+                        <br>
+                        <div>Brewed by <?= $brewery ?> in <?= $country ?></div>
                     </div>
                 </div>
         <?php
