@@ -66,22 +66,7 @@
                 </div>
             </div>
             <div class="foundItems">
-                <?php
-                    foreach($beers as $product){
-                        echo '<div class="product">
-                            <div class="productImage">
-                                <img src="images/'.$product[0].'" alt="Temp Product"/>
-                            </div>
-                            <div class="productDescription">
-                                <p>'.$product[1].'</p>
-                            </div>
-                            <div class="buttons">
-                                <button>Purchase</button>
-                            </div>
-                        </div>';
-                    }
-                ?>
-                <!-- <div class="product">
+                <div class="product">
                     <div class="productImage">
                         <img src="images/tempProduct.png" alt="Temp Product"/>
                     </div>
@@ -135,7 +120,7 @@
                     <div class="buttons">
                         <button>Purchase</button>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <?php
