@@ -45,7 +45,7 @@
 .div-container-content {
     display: grid;
     grid-template-columns: 200px auto;
-    grid-column-gap: 1.5%;
+    grid-column-gap: 10px;
 }
 
 .grid-item-content {
