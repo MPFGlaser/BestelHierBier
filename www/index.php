@@ -69,10 +69,29 @@ include('php/opendb.php');
                     sort($categories);
 
                     foreach ($categories as &$value) {
-                        $categoryName = $value;
                 ?>
-                        <input type="checkbox" id=<?= $categoryName ?> name=<?= $categoryName ?> value=<?= $categoryName ?>>
-                        <label for=<?= $categoryName ?>><?= $categoryName ?></label><br>
+                        <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
+                        <label for=<?= $value ?>><?= $value ?></label><br>
+                <?php
+                    }
+                } catch (PDOException $ex) {
+                    die("Error: " . $ex->getMessage());
+                }
+                ?>
+                <p>Brewery</p>
+                <?php
+                try {
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql = "SELECT DISTINCT brewery FROM beers";
+                    $sqlSent = $db->prepare($sql);
+                    $sqlSent->execute();
+                    $breweries = $sqlSent->fetchAll(PDO::FETCH_COLUMN);
+                    sort($breweries);
+
+                    foreach ($breweries as &$value) {
+                ?>
+                        <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
+                        <label for=<?= $value ?>><?= $value ?></label><br>
                 <?php
                     }
                 } catch (PDOException $ex) {
