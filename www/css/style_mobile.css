@@ -25,7 +25,7 @@
 
     .product{
         display: grid;
-        grid-template-columns: 25% 65% 10%;
+        grid-template-columns: 25% 50% 25%;
         width: 100%;
         margin: auto;
         border-width: thin;
@@ -39,6 +39,11 @@
         max-height: 300px;
         max-width: auto;
         padding: 5px;
+    }
+
+    .product button {
+        font-size: 125%;
+        margin: 10%;
     }
 
     .productPage {

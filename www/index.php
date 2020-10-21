@@ -115,7 +115,7 @@
                                 <p><?=$category?> by <?=$brewery?></p>
                             </div>
                             <div class="buttons">
-                                <button><a href="/product.php?id=<?=$id?>">Learn more</a></button>
+                                <button onclick="window.location.href='/product.php?id=<?=$id?>'">Learn more</button>
                             </div>
                         </div>
                         <?php
