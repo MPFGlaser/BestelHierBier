@@ -50,23 +50,22 @@ include_once('php/register.php');
         </div>
         <?php
             if(isset($_POST['submitLogin'])){
-                loginUser($_POST['userName'], $_POST['passWord']);
-                // if(loginUser($_POST['userName'], $_POST['passWord'])){
-                    // $_SESSION['login'] = true;
-                    // header("Location: https://bestelhierbier.nl");
-                    // die();
-                // }else{
-                    // echo "Something went wrong in login";
-                // }
+                if(loginUser($_POST['userName'], $_POST['passWord'])){
+                    $_SESSION['login'] = true;
+                    header("Location: https://bestelhierbier.nl");
+                    die();
+                }else{
+                    echo "Something went wrong in login";
+                }
             }
             if(isset($_POST['submitRegister'])){
-                // if(registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])){
-                    // $_SESSION['login'] = true;
-                    // header("Location: https://bestelhierbier.nl");
-                    // die();
-                // }else{
-                    // echo "Something went wrong in register";
-                // }
+                if(registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])){
+                    $_SESSION['login'] = true;
+                    header("Location: https://bestelhierbier.nl");
+                    die();
+                }else{
+                    echo "Something went wrong in register";
+                }
             }
         ?>
     </body>
