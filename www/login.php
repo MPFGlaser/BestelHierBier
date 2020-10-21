@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+include('header.php');
 include_once('php/register.php');
 ?>
 <!DOCTYPE html>
@@ -17,16 +18,6 @@ include_once('php/register.php');
         <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
     </head>
     <body>
-        <div class="grid-container-top">
-            <div class="grid-item">
-                <a href="/"><img src="../images/tempLogo.png" alt="Temp Logo"/></a>
-            </div>
-            <div class="grid-item-top">
-                <p id="title"><a href="/">Bestel Hier Bier</a></p>
-            </div>
-            <div class="grid-item-top">
-            </div>
-        </div>
         <div class="mobileLogo">
             <img src="../images/tempLogo.png" alt="Temp Logo"/>
         </div>
