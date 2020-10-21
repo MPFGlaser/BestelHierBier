@@ -27,9 +27,10 @@ include('php/opendb.php');
         </div>
         <div class="grid-item-top">
             <?php
-            if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+            if(isset($_SESSION['User'])){
+                $user = unserialize($_SESSION['User']);
                 echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                echo '<p class="info">Welkom ' . $_SESSION["UserName"] . '</p>';
+                echo '<p class="info">Welkom '.$user->get_name().'</p>';
 
 
                 if (isset($_POST['reset'])) {
@@ -59,11 +60,6 @@ include('php/opendb.php');
                 </br>
                 <p>Category</p>
                 <?php
-                    if(isset($_SESSION['User'])){
-                        $user = unserialize($_SESSION['User']);
-                        echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                        echo '<p class="info">Welkom '.$user->get_name().'</p>';
-                    }
                 try {
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql = "SELECT DISTINCT category FROM beers";
