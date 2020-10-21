@@ -20,7 +20,7 @@ include('header.php');
 </head>
 
 <body>
-    
+
     <div class="mobileLogo">
         <img src="images/tempLogo.png" alt="Temp Logo" />
     </div>
@@ -51,10 +51,7 @@ include('header.php');
                     <title><?= $name ?> by <?= $brewery ?> - Bestel Hier Bier</title>
                     <div class="grid-item">
                         <h1><?= $name ?> - <?= $category ?> (<?= $abv ?>)</h1>
-                        <!-- <p><?= $brewery ?>, <?= $country ?></p> -->
-                        <div class="productImage">
-                            <img src=/images/<?= $imgURL ?> alt="<?= $name ?>" />
-                        </div>
+                        <a href=/images/<?= $imgURL ?>><img src=/images/<?= $imgURL ?> alt="<?= $name ?>" />    </a>                    
                     </div>
                     <div class="productPageDescription">
                         <h4>Description</h4>

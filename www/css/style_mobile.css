@@ -72,11 +72,15 @@
     }
     
     .productPage img {
-        height: 50%;
+        height: auto;
         width: auto;
         max-height: 500px;
         max-width: auto;
         padding: 5px;
+    }
+
+    .productPage h1 {
+        font-size: 400%;
     }
     
     .productPageDescription {
