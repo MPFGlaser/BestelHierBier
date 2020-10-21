@@ -28,7 +28,7 @@
                 <?php
                     if(isset($_SESSION['login']) && $_SESSION['login'] == true){
                         // echo '<p class="info">Welkom '.$user->get_name().'</p>';
-                        echo var_dump($GLOBALS);
+                        // echo var_dump($GLOBALS);
                         echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
                     }else{
                         echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
@@ -66,62 +66,27 @@
                 </div>
             </div>
             <div class="foundItems">
-                <div class="product">
-                    <div class="productImage">
-                        <img src="images/tempProduct.png" alt="Temp Product"/>
-                    </div>
-                    <div class="productDescription">
-                        <p>Place lorem ipsum here...</p>
-                    </div>
-                    <div class="buttons">
-                        <button>Purchase</button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="productImage">
-                        <img src="images/tempProduct.png" alt="Temp Product"/>
-                    </div>
-                    <div class="productDescription">
-                        <p>Place lorem ipsum here...</p>
-                    </div>
-                    <div class="buttons">
-                        <button>Purchase</button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="productImage">
-                        <img src="images/tempProduct.png" alt="Temp Product"/>
-                    </div>
-                    <div class="productDescription">
-                        <p>Place lorem ipsum here...</p>
-                    </div>
-                    <div class="buttons">
-                        <button>Purchase</button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="productImage">
-                        <img src="images/tempProduct.png" alt="Temp Product"/>
-                    </div>
-                    <div class="productDescription">
-                        <p>Place lorem ipsum here...</p>
-                    </div>
-                    <div class="buttons">
-                        <button>Purchase</button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="productImage">
-                        <img src="images/tempProduct.png" alt="Temp Product"/>
-                    </div>
-                    <div class="productDescription">
-                        <p>Place lorem ipsum here...</p>
-                    </div>
-                    <div class="buttons">
-                        <button>Purchase</button>
-                    </div>
-                </div>
+                <?php
+                    //pakalles();
+                    $i = 0;
+                    while($i < 100){
+                        echo '<div class="product">
+                                <div class="productImage">
+                                    <img src="images/tempProduct.png" alt="Temp Product"/>
+                                </div>
+                                <div class="productDescription">
+                                    <p>Place lorem ipsum here...</p>
+                                </div>
+                                <div class="buttons">
+                                    <button>Purchase</button>
+                                </div>
+                            </div>';
+                        $i += 1;
+                    }
+                ?>
             </div>
+
+
         </div>
         <?php
         //Temp to test login/register
