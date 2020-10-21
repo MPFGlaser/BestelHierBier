@@ -5,7 +5,6 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
     include('php/classes/userClass.php');
 ?>
 <!DOCTYPE html>
@@ -71,22 +70,62 @@
             </div>
             <div class="foundItems">
                 <?php
-                    //pakalles();
-                    $i = 0;
-                    while($i < 100){
-                        echo '<div class="product">
-                                <div class="productImage">
-                                    <img src="images/tempProduct.png" alt="Temp Product"/>
-                                </div>
-                                <div class="productDescription">
-                                    <p>Place lorem ipsum here...</p>
-                                </div>
-                                <div class="buttons">
-                                    <button>Purchase</button>
-                                </div>
-                            </div>';
-                        $i += 1;
+                    // //pakalles();
+                    // $i = 0;
+                    // while($i < 100){
+                    //     echo '<div class="product">
+                    //             <div class="productImage">
+                    //                 <img src="images/tempProduct.png" alt="Temp Product"/>
+                    //             </div>
+                    //             <div class="productDescription">
+                    //                 <p>Place lorem ipsum here...</p>
+                    //             </div>
+                    //             <div class="buttons">
+                    //                 <button>Purchase</button>
+                    //             </div>
+                    //         </div>';
+                    //     $i += 1;
+                    // }
+
+                    include('php/opendb.php');
+
+                    try
+                    {   
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $sql = "SELECT * FROM beers";
+                        $sqlSent = $db->prepare($sql);
+                        $sqlSent->execute();                 
+                        $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach($beers as $row)
+                        {
+                            $name = $row["name"];
+                            $brewery = $row["brewery"];
+                            $category = $row["category"];
+                            $imgURL = $row["imageURL"];
+    
+                            ?>
+                            <div class="product">
+                            <div class="productImage">
+                                <img src=/images/<?=$imgURL?> alt=<?=$name?>/>
+                            </div>
+                            <div class="productDescription">
+                            <p><?=$name?></p><br>
+                                <p><?=$category?> by <?=$brewery?></p>
+                            </div>
+                            <div class="buttons">
+                                <button>Purchase</button>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                    
                     }
+                    catch(PDOException $ex)
+                    {
+                        die("Error: ". $ex->getMessage());
+                    }
+                    
                 ?>
             </div>
         </div>
