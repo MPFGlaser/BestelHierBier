@@ -122,10 +122,10 @@ include('php/opendb.php');
                             <img src=/images/<?= $imgURL ?> alt=<?= $name ?> />
                         </div>
                         <div class="productDescription">
-                            <p><?= $name ?> (<?=$abv?>)</p><br>
+                            <h1><?= $name ?> (<?=$abv?>)</h1><br>
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
-                        <div class="buttons">
+                        <div class="button">
                             <button onclick="window.location.href='/product.php?id=<?= $id ?>'">Learn more</button>
                         </div>
                     </div>
