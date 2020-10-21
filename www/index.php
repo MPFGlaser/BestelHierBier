@@ -60,15 +60,15 @@ include('php/opendb.php');
                 </br>
                 <p>Category</p>
                 <!-- <input type="checkbox" name="Blond">
-                    <label for="Blond">Blond</label></br>
-                    <input type="checkbox" name="Dark">
-                    <label for="Dark">Dark</label></br>
-                    <input type="checkbox" name="Triple">
-                    <label for="Triple">Triple</label></br>
-                    <input type="checkbox" name="Quadruple">
-                    <label for="Quadruple">Quadruple</label></br>
-                    <input type="checkbox" name="IPA">
-                    <label for="IPA">IPA</label></br> -->
+                <label for="Blond">Blond</label></br>
+                <input type="checkbox" name="Dark">
+                <label for="Dark">Dark</label></br>
+                <input type="checkbox" name="Triple">
+                <label for="Triple">Triple</label></br>
+                <input type="checkbox" name="Quadruple">
+                <label for="Quadruple">Quadruple</label></br>
+                <input type="checkbox" name="IPA">
+                <label for="IPA">IPA</label></br> -->
 
                 <?php
                 try {
@@ -82,8 +82,8 @@ include('php/opendb.php');
                     foreach ($categories as &$value) {
                         $categoryName = $value;
                 ?>
-                        <input type="checkbox" name=<?= $categoryName ?>>
-                        <label for=<?= $categoryName ?>><?= $categoryName ?></label></br>
+                        <input type="checkbox" id=<?= $categoryName ?> name=<?= $categoryName ?> value=<?= $categoryName ?>>
+                        <label for=<?= $categoryName ?>><?= $categoryName ?></label><br>
                 <?php
                     }
                 } catch (PDOException $ex) {
