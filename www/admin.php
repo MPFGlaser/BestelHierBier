@@ -26,15 +26,21 @@
             </div>
             <div class="grid-item-top">
                 <?php
-                    if(isset($_SESSION['login']) && $_SESSION['login'] == true){
+                    if(isset($_SESSION['User'])){
+                        $user = unserialize($_SESSION['User']);
+                        if(!$user->is_admin()){
+                            header("Location: https://bestelhierbier.nl");
+                            die();
+                        }
                         echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                        echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
+                        echo '<p class="info">Welkom '.$user->get_name().'</p>';
 
                         if(isset($_POST['reset'])){
                             session_destroy();
                         }
                     }else{
-                        echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
+                        header("Location: https://bestelhierbier.nl");
+                        die();
                     }
                 ?>
             </div>
@@ -43,51 +49,6 @@
             <img src="images/tempLogo.png" alt="Temp Logo"/>
         </div>
         <br/>
-        <div class="div-container-content">
-            <div class="grid-item-content">
-                <div class="filterMenu">
-                    <input placeholder="Search"></input>
-                    <button>Search</button>
-                    </br>
-                    <p>Price</p>
-                    <input type="range" min="1" max="100" value="50">
-                    </br>
-                    <p>Score</p>
-                    <input type="range" min="1" max="5" value="3">
-                    </br>
-                    <p>Category</p>
-                    <input type="checkbox" name="Blond">
-                    <label for="Blond">Blond</label></br>
-                    <input type="checkbox" name="Dark">
-                    <label for="Dark">Dark</label></br>
-                    <input type="checkbox" name="Triple">
-                    <label for="Triple">Triple</label></br>
-                    <input type="checkbox" name="Quadruple">
-                    <label for="Quadruple">Quadruple</label></br>
-                    <input type="checkbox" name="IPA">
-                    <label for="IPA">IPA</label></br>
-                </div>
-            </div>
-            <div class="foundItems">
-                <?php
-                    //pakalles();
-                    $i = 0;
-                    while($i < 100){
-                        echo '<div class="product">
-                                <div class="productImage">
-                                    <img src="images/tempProduct.png" alt="Temp Product"/>
-                                </div>
-                                <div class="productDescription">
-                                    <p>Place lorem ipsum here...</p>
-                                </div>
-                                <div class="buttons">
-                                    <button>Purchase</button>
-                                </div>
-                            </div>';
-                        $i += 1;
-                    }
-                ?>
-            </div>
-        </div>
+
     </body>
 </html>
