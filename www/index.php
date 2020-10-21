@@ -30,6 +30,10 @@
                         // echo '<p class="info">Welkom '.$user->get_name().'</p>';
                         // echo var_dump($GLOBALS);
                         echo '<p class="info">Welkom '.$_SESSION["UserName"].'</p>';
+                        echo "<form method='post'><button name='reset'>Logout</button></form>";
+                        if(isset($_POST['reset'])){
+                            session_destroy();
+                        }
                     }else{
                         echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
                     }
@@ -85,15 +89,6 @@
                     }
                 ?>
             </div>
-
-
         </div>
-        <?php
-        //Temp to test login/register
-        echo "<form method='post'><button name='reset'>Reset Session</button></form>";
-        if(isset($_POST['reset'])){
-            session_destroy();
-        }
-        ?>
     </body>
 </html>
