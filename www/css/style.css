@@ -1,59 +1,61 @@
-.grid-container-top{
+.grid-container-top {
     display: grid;
     grid-template-columns: auto auto auto;
     border-width: thin;
     border-style: solid;
 }
 
-.mobileLogo{
+.mobileLogo {
     display: none;
 }
 
-#title{
+#title {
     text-align: center;
     text-decoration: none;
 }
 
-.info{
+.info {
     float: right;
 }
 
 .loginBtn {
     float: right;
-	background:linear-gradient(to bottom, #d6d6d6 5%, #bfbfbf 100%);
-	background-color:#d6d6d6;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:23px;
-	font-weight:bold;
-	padding:32px 32px;
-	text-decoration:none;
-}
-.loginBtn:hover {
-	background:linear-gradient(to bottom, #bfbfbf 5%, #d6d6d6 100%);
-	background-color:#bfbfbf;
-}
-.loginBtn:active {
-	position:relative;
-	top:1px;
+    background: linear-gradient(to bottom, #d6d6d6 5%, #bfbfbf 100%);
+    background-color: #d6d6d6;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 32px 32px;
+    text-decoration: none;
 }
 
-.div-container-content{
+.loginBtn:hover {
+    background: linear-gradient(to bottom, #bfbfbf 5%, #d6d6d6 100%);
+    background-color: #bfbfbf;
+}
+
+.loginBtn:active {
+    position: relative;
+    top: 1px;
+}
+
+.div-container-content {
     display: grid;
     grid-template-columns: 200px auto;
     grid-column-gap: 1.5%;
 }
 
-.grid-item-content{
+.grid-item-content {
     border-width: thin;
     border-style: solid;
     max-width: 200px;
     min-width: 180px;
 }
 
-.foundItems{
+.foundItems {
     border-width: thin;
     border-style: solid;
     display: grid;
@@ -62,19 +64,50 @@
     padding: 10px;
 }
 
-.product{
+.product {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 25% 65% 10%;
     width: 100%;
     margin: auto;
     border-width: thin;
-    border-style: solid
+    border-style: solid;
 }
 
-.product img{
-    height: auto;
-    width: 50%;
-    max-height: auto;
-    max-width: 75px;
+.product img {
+    height: 50%;
+    width: auto;
+    max-height: 150px;
+    max-width: auto;
     padding: 5px;
+}
+
+.product button {
+    margin: 10%;
+}
+
+.productPage {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: auto;
+    margin: auto;
+    padding-top: 1%;
+    padding-right: 5%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    border-width: thin;
+    border-style: solid;
+}
+
+.productPage img {
+    height: 50%;
+    width: auto;
+    max-height: 500px;
+    max-width: auto;
+    padding: 5px;
+}
+
+.productPageDescription {
+    /* position: relative; */
+    width: 65%;
+    margin: 1px;
 }
