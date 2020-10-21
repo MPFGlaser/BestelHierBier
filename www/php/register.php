@@ -35,7 +35,7 @@
             }
         }
         if(!$loggedIn){
-            echo "Invlaid Credentials";
+            echo "Invalid Credentials";
         }
         // try{
         //     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
