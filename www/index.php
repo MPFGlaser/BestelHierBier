@@ -7,9 +7,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include('php/classes/userClass.php');
 include('php/opendb.php');
+include('views/header.php');
+
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Bestel Hier Bier</title>
@@ -18,30 +21,6 @@ include('php/opendb.php');
 </head>
 
 <body>
-    <div class="grid-container-top">
-        <div class="grid-item">
-            <img src="images/tempLogo.png" alt="Temp Logo" />
-        </div>
-        <div class="grid-item-top">
-            <p id="title">Bestel Hier Bier</p>
-        </div>
-        <div class="grid-item-top">
-            <?php
-            if(isset($_SESSION['User'])){
-                $user = unserialize($_SESSION['User']);
-                echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                echo '<p class="info">Welkom '.$user->get_name().'</p>';
-
-
-                if (isset($_POST['reset'])) {
-                    session_destroy();
-                }
-            } else {
-                echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
-            }
-            ?>
-        </div>
-    </div>
     <div class="mobileLogo">
         <img src="images/tempLogo.png" alt="Temp Logo" />
     </div>
@@ -120,13 +99,14 @@ include('php/opendb.php');
             ?>
                     <div class="product">
                         <div class="productImage">
-                            <img src=/images/<?= $imgURL ?> alt=<?= $name ?> />
+                            <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                         </div>
                         <div class="productDescription">
-                            <p><?= $name ?> (<?=$abv?>)</p><br>
+                            <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
+                            <!-- <h1><?= $name ?> (<?= $abv ?>)</h1><br> -->
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
-                        <div class="buttons">
+                        <div class="button">
                             <button onclick="window.location.href='/product.php?id=<?= $id ?>'">Learn more</button>
                         </div>
                     </div>

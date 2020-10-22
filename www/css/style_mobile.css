@@ -25,7 +25,7 @@
 
     .product{
         display: grid;
-        grid-template-columns: 25% 50% 25%;
+        grid-template-columns: 25% auto 25%;
         width: 100%;
         margin: auto;
         border-width: thin;
@@ -34,16 +34,33 @@
     }
 
     .product img{
-        height: 50%;
+        height: auto;
         width: auto;
-        max-height: 300px;
-        max-width: auto;
+        max-height: 250pt;
+        max-width: 100%;
         padding: 5px;
     }
 
     .product button {
         font-size: 125%;
+        width: auto;
         margin: 10%;
+        /* display: flex;
+        align-items: center; */
+    }
+
+    .product p {
+        margin: 5%;
+    }
+
+    .product h1 {
+        margin: 5%;
+        font-size: 150%;
+    }
+
+    .productDescription a {
+        text-decoration: none;
+        color: black;
     }
 
     .productPage {
@@ -60,11 +77,15 @@
     }
     
     .productPage img {
-        height: 50%;
+        height: auto;
         width: auto;
         max-height: 500px;
         max-width: auto;
         padding: 5px;
+    }
+
+    .productPage h1 {
+        font-size: 400%;
     }
     
     .productPageDescription {

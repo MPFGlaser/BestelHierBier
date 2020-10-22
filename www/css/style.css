@@ -45,7 +45,7 @@
 .div-container-content {
     display: grid;
     grid-template-columns: 200px auto;
-    grid-column-gap: 1.5%;
+    grid-column-gap: 10px;
 }
 
 .grid-item-content {
@@ -66,7 +66,7 @@
 
 .product {
     display: grid;
-    grid-template-columns: 25% 65% 10%;
+    grid-template-columns: 125pt auto 10%;
     width: 100%;
     margin: auto;
     border-width: thin;
@@ -74,10 +74,10 @@
 }
 
 .product img {
-    height: 50%;
+    height: auto;
     width: auto;
     max-height: 150px;
-    max-width: auto;
+    max-width: 100%;
     padding: 5px;
 }
 
@@ -85,10 +85,25 @@
     margin: 10%;
 }
 
+.product p {
+    margin: 10pt;
+}
+
+.product h1 {
+    margin: 10pt;
+    font-size: 150%;
+}
+
+.productDescription a {
+    text-decoration: none;
+    color: black;
+}
+
 .productPage {
     display: grid;
     grid-template-columns: 50% 50%;
     width: auto;
+    height: auto;
     margin: auto;
     padding-top: 1%;
     padding-right: 5%;
@@ -99,7 +114,7 @@
 }
 
 .productPage img {
-    height: 50%;
+    height: auto;
     width: auto;
     max-height: 500px;
     max-width: auto;
