@@ -5,13 +5,10 @@
 
         try{
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO Users (UserName, PassWord, EMail) VALUES ('".$userName."', '".md5($passWord)."', '".$email."')";
+            $sql = "INSERT INTO Users (UserName, PassWord, EMail) VALUES (?, ?, ?)";
             $sqlSent = $db->prepare($sql);
-            $sqlSent->execute();
-            $_SESSION['UserName'] = $userName;
-            global $user;
-            $user = new User($userName, $email, $passWord);
-            return true;
+            $sqlSent->execute([$userName, md5($passWord), $email]);
+            return loginUser($userName, $passWord);
         }catch(PDOException $ex) {
             die("Error: ". $ex->getMessage());
         }
@@ -23,14 +20,13 @@
 
         try{
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT ID FROM Users WHERE UserName = '".$userName."' AND PassWord = '".md5($passWord)."'";
+            $sql = "SELECT * FROM Users WHERE UserName = ? AND PassWord = ?";
             $sqlSent = $db->prepare($sql);
-            $sqlSent->execute();
-            $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
-            if(isset($results['ID'])){
-                global $user;
-                $user = new User($userName, $email, $passWord);
-                $_SESSION['UserName'] = $userName;
+            if($sqlSent->execute([$userName, md5($passWord)])){
+                $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
+
+                $user = new User($userName, $results['EMail'], $results['admin']);
+                $_SESSION['User'] = serialize($user);
                 return true;
             }else{
                 return false;
