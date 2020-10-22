@@ -3,7 +3,7 @@
             <a href="/index.php"><img src="/images/tempLogo.png" alt="Temp Logo" /></a>
         </div>
         <div class="grid-item-top">
-            <h1 id="title">Bestel Hier Bier</h1>
+            <a href="/index.php"><h1 id="title">Bestel Hier Bier</h1></a>
         </div>
         <div class="grid-item-top">
             <?php

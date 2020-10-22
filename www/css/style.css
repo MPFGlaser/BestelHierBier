@@ -5,8 +5,18 @@
     border-style: solid;
 }
 
+.grid-container-top a {
+    text-decoration: none;
+    color: black;
+}
+
 .mobileLogo {
     display: none;
+}
+
+.header a {
+    text-decoration: none;
+    color: black;
 }
 
 #title {
