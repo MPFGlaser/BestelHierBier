@@ -99,15 +99,15 @@ include('views/header.php');
             ?>
                     <div class="product">
                         <div class="productImage">
-                            <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                            <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                         </div>
                         <div class="productDescription">
-                            <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
+                            <a href='/products/view.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
                             <!-- <h1><?= $name ?> (<?= $abv ?>)</h1><br> -->
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
                         <div class="button">
-                            <button onclick="window.location.href='/product.php?id=<?= $id ?>'">Learn more</button>
+                            <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
                         </div>
                     </div>
             <?php
