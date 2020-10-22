@@ -99,10 +99,11 @@ include('views/header.php');
             ?>
                     <div class="product">
                         <div class="productImage">
-                            <img src=/images/<?= $imgURL ?> alt=<?= $name ?> />
+                            <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                         </div>
                         <div class="productDescription">
-                            <h1><?= $name ?> (<?= $abv ?>)</h1><br>
+                            <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
+                            <!-- <h1><?= $name ?> (<?= $abv ?>)</h1><br> -->
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
                         <div class="button">

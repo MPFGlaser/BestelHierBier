@@ -94,6 +94,11 @@
     font-size: 150%;
 }
 
+.productDescription a {
+    text-decoration: none;
+    color: black;
+}
+
 .productPage {
     display: grid;
     grid-template-columns: 50% 50%;
