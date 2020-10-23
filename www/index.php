@@ -81,6 +81,10 @@ include('views/header.php');
         </div>
         <div class="foundItems">
             <?php
+
+            // Make it so only admins see the edit button
+            echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+
             try {
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "SELECT * FROM beers";
@@ -102,12 +106,15 @@ include('views/header.php');
                             <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                         </div>
                         <div class="productDescription">
-                            <a href='/products/view.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
-                            <!-- <h1><?= $name ?> (<?= $abv ?>)</h1><br> -->
+                            <a href='/products/view.php?id=<?= $id ?>'>
+                                <h1><?= $name ?> (<?= $abv ?>)</h1>
+                            </a><br>
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
                         <div class="button">
                             <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
+                            <!-- Make it so only admins see the edit button -->
+                            <?php echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
                         </div>
                     </div>
             <?php
