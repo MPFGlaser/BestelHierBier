@@ -38,7 +38,7 @@ include_once('../php/product.php');
             <p>Category: <input type="text" name="category" value="<?= $beer->get_category() ?>" /></p>
             <p>Price: <input type="text" name="price" value="<?= $beer->get_price() ?>" /></p>
             <p>ABV: <input type="text" name="abv" value="<?= $beer->get_abv() ?>" /></p>
-            <p>Description: <textarea name="description" rows="10" cols="50"> <?= $beer->get_description() ?></textarea></p>
+            <p>Description: <textarea name="description" rows="10" cols="50"><?= $beer->get_description() ?></textarea></p>
             <p>Available: <input type=checkbox name="available" <?php if ($beer->is_available() == '1') echo "checked='checked'"; ?> /></p>
             <p>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></p>
             <p>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></p>
