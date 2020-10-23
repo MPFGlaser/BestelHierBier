@@ -62,7 +62,7 @@ include_once('php/product.php')
         <div class="foundItems">
             <?php
 
-            echo ($user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
 
             $beers = getAllProducts();
 
@@ -86,7 +86,7 @@ include_once('php/product.php')
                     </div>
                     <div class="button">
                         <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                        <?php echo ($user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
                     </div>
                 </div>
             <?php
