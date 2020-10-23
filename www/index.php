@@ -62,8 +62,7 @@ include_once('php/product.php')
         <div class="foundItems">
             <?php
 
-            // Make it so only admins see the edit button
-            echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+            echo ($user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
 
             $beers = getAllProducts();
 
@@ -87,8 +86,7 @@ include_once('php/product.php')
                     </div>
                     <div class="button">
                         <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                        <!-- Make it so only admins see the edit button -->
-                        <?php echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                        <?php echo ($user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
                     </div>
                 </div>
             <?php
