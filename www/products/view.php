@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 include('../php/classes/userClass.php');
 include('../php/opendb.php');
 include('../views/header.php');
+include_once('../php/editproduct.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,56 +21,29 @@ include('../views/header.php');
 </head>
 
 <body>
-
     <div class="mobileLogo">
         <img src="../images/tempLogo.png" alt="Temp Logo" />
     </div>
     <br />
     <div>
         <?php
-        try {
-            $id = $_GET['id'];
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM beers WHERE id = '" . $id . "'";
-            $sqlSent = $db->prepare($sql);
-            $sqlSent->execute();
-            $beer = $sqlSent->fetch(PDO::FETCH_ASSOC);
-
-            if (isset($beer['id'])) {
-                // echo $beer['name'];
-                $name = $beer['name'];
-                $brewery = $beer['brewery'];
-                $category = $beer['category'];
-                $price = $beer['price'];
-                $abv = $beer['abv'];
-                $description = $beer['description'];
-                $country = $beer['country'];
-                $imgURL = $beer['imageURL'];
-
+        $id = $_GET['id'];
+        $beer = getProduct($id);
         ?>
-                <div class="productPage">
-                    <title><?= $name ?> by <?= $brewery ?> - Bestel Hier Bier</title>
-                    <div class="grid-item">
-                        <h1><?= $name ?> - <?= $category ?> (<?= $abv ?>)</h1>
-                        <a href=../images/<?= $imgURL ?>><img src=../images/<?= $imgURL ?> alt="<?= $name ?>" />    </a>                    
-                    </div>
-                    <div class="productPageDescription">
-                        <h4>Description</h4>
-                        <p><?= $description ?></p>
+        <div class="productPage">
+            <title><?= $beer->get_name() ?> by <?= $beer->get_brewery() ?> - Bestel Hier Bier</title>
+            <div class="grid-item">
+                <h1><?= $beer->get_name() ?> - <?= $beer->get_category() ?> (<?= $beer->get_abv() ?>)</h1>
+                <a href=../images/<?= $beer->get_imageURL() ?>> <img src=../images/<?= $beer->get_imageURL() ?> alt="<?= $beer->get_name() ?>" /> </a>
+            </div>
+            <div class="productPageDescription">
+                <h4>Description</h4>
+                <p><?= $beer->get_description() ?></p>
 
-                        <br>
-                        <div>Brewed by <?= $brewery ?> in <?= $country ?></div>
-                    </div>
-                </div>
-        <?php
-            } else {
-                echo "No beer found! Such a shame...";
-            }
-        } catch (PDOException $ex) {
-            die("Error: " . $ex->getMessage());
-        }
-
-        ?>
+                <br>
+                <div>Brewed by <?= $beer->get_brewery() ?> in <?= $beer->get_country() ?></div>
+            </div>
+        </div>
     </div>
 </body>
 
