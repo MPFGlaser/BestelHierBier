@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 //For error viewing
 ini_set('display_errors', 1);
@@ -32,10 +32,10 @@ include('views/header.php');
                 <button>Search</button>
                 </br>
                 <p>Price</p>
-                <input type="range" min="1" max="100" value="50">
+                <input type="range" min="1" max="100" value="100">
                 </br>
                 <p>Score</p>
-                <input type="range" min="1" max="5" value="3">
+                <input type="range" min="1" max="5" value="5">
                 </br>
                 <p>Category</p>
                 <?php
@@ -103,7 +103,6 @@ include('views/header.php');
                         </div>
                         <div class="productDescription">
                             <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
-                            <!-- <h1><?= $name ?> (<?= $abv ?>)</h1><br> -->
                             <p><?= $category ?> by <?= $brewery ?></p>
                         </div>
                         <div class="button">

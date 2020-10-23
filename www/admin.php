@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    // session_start();
 
     //For error viewing
     ini_set('display_errors', 1);
@@ -7,6 +7,7 @@
     error_reporting(E_ALL);
 
     include('php/classes/userClass.php');
+    include('views/header.php');
 ?>
 <!DOCTYPE html>
 <html>
