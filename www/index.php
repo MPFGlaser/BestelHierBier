@@ -40,42 +40,22 @@ include_once('php/product.php')
                 </br>
                 <p>Category</p>
                 <?php
-                try {
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = "SELECT DISTINCT category FROM beers";
-                    $sqlSent = $db->prepare($sql);
-                    $sqlSent->execute();
-                    $categories = $sqlSent->fetchAll(PDO::FETCH_COLUMN);
-                    sort($categories);
-
-                    foreach ($categories as &$value) {
+                $categories = getCategories();
+                foreach ($categories as &$value) {
                 ?>
-                        <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                        <label for=<?= $value ?>><?= $value ?></label><br>
+                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
+                    <label for=<?= $value ?>><?= $value ?></label><br>
                 <?php
-                    }
-                } catch (PDOException $ex) {
-                    die("Error: " . $ex->getMessage());
                 }
                 ?>
                 <p>Brewery</p>
                 <?php
-                try {
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = "SELECT DISTINCT brewery FROM beers";
-                    $sqlSent = $db->prepare($sql);
-                    $sqlSent->execute();
-                    $breweries = $sqlSent->fetchAll(PDO::FETCH_COLUMN);
-                    sort($breweries);
-
-                    foreach ($breweries as &$value) {
+                $breweries = getBreweries();
+                foreach ($breweries as &$value) {
                 ?>
-                        <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                        <label for=<?= $value ?>><?= $value ?></label><br>
+                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
+                    <label for=<?= $value ?>><?= $value ?></label><br>
                 <?php
-                    }
-                } catch (PDOException $ex) {
-                    die("Error: " . $ex->getMessage());
                 }
                 ?>
             </div>
@@ -85,9 +65,9 @@ include_once('php/product.php')
 
             // Make it so only admins see the edit button
             echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
-            
+
             $beers = getAllProducts();
-            
+
             foreach ($beers as $row) {
                 $name = $row["name"];
                 $brewery = $row["brewery"];

@@ -90,7 +90,8 @@ function getProduct($id): Beer
 }
 
 // Returns an array with all products found in the database.
-function getAllProducts(){
+function getAllProducts()
+{
     include('php/opendb.php');
     $beers = null;
     try {
@@ -103,4 +104,40 @@ function getAllProducts(){
         die("Error: " . $ex->getMessage());
     }
     return $beers;
+}
+
+// Returns an array of all unique categories, sorted alphabetically.
+function getCategories()
+{
+    include('php/opendb.php');
+    $categories = null;
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT DISTINCT category FROM beers";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $categories = $sqlSent->fetchAll(PDO::FETCH_COLUMN);
+        sort($categories);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $categories;
+}
+
+// Returns an array of all unique breweries, sorted alphabetically.
+function getBreweries()
+{
+    include('php/opendb.php');
+    $breweries = null;
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT DISTINCT brewery FROM beers";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $breweries = $sqlSent->fetchAll(PDO::FETCH_COLUMN);
+        sort($breweries);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $breweries;
 }
