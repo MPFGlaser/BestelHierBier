@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 //For error viewing
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
