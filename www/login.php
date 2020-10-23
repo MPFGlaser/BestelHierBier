@@ -50,18 +50,20 @@ include_once('php/register.php');
         <?php
             if(isset($_POST['submitLogin'])){
                 if(loginUser($_POST['userName'], $_POST['passWord'])){
-                    header("Location: https://bestelhierbier.nl");
+                    header("Location: /index.php");
                     die();
                 }else{
-                    echo "Something went wrong in login";
+                    echo "Something went wrong while logging in.";
+                    echo "Are you sure you're using the correct username and password?";
                 }
             }
             if(isset($_POST['submitRegister'])){
                 if(registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])){
-                    header("Location: https://bestelhierbier.nl");
+                    header("Location: /index.php");
                     die();
                 }else{
-                    echo "Something went wrong in register";
+                    echo "Something went wrong while registering.";
+                    echo "If this problem persists, please contact the owner of the website.";
                 }
             }
         ?>
