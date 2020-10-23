@@ -27,16 +27,16 @@ include_once('php/register.php');
             echo '<div class="div-container-content">
                 <div class="loginContent">
                     <form method="POST" name="loginForm">
-                        <p>Username: <input type="text" name="userName"/></p>
-                        <p>Password: <input type="password" name="passWord"/></p>
+                        <p>Username: <input type="text" required name="userName"/></p>
+                        <p>Password: <input type="password" required name="passWord"/></p>
                         <button type="submit" name="submitLogin">Login</button>
                     </form>
                 </div>
                 <div class="loginContent">
                     <form method="POST" name="registerForm">
-                        <p>Username: <input type="text" name="userName"/></p>
-                        <p>Password: <input type="password" name="passWord"/></p>
-                        <p>Email: <input type="text" name="email"/></p>
+                        <p>Username: <input type="text" required name="userName"/></p>
+                        <p>Password: <input type="password" required name="passWord"/></p>
+                        <p>Email: <input type="text" required name="email"/></p>
                         <button type="submit" name="submitRegister">Register</button>
                     </form>
                 </div>
@@ -53,7 +53,7 @@ include_once('php/register.php');
                     header("Location: /index.php");
                     die();
                 }else{
-                    echo "Something went wrong while logging in.";
+                    echo "Something went wrong while logging in. <br>";
                     echo "Are you sure you're using the correct username and password?";
                 }
             }
@@ -62,7 +62,7 @@ include_once('php/register.php');
                     header("Location: /index.php");
                     die();
                 }else{
-                    echo "Something went wrong while registering.";
+                    echo "Something went wrong while registering. <br>";
                     echo "If this problem persists, please contact the owner of the website.";
                 }
             }
