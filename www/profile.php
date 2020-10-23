@@ -30,11 +30,17 @@ include('views/header.php');
     </div>
     <br />
     <?php
-        echo "<p>Change username: <input type='text' value=".$user->get_name()."></p>";
-        echo "<p>Change email: <input type='text' value=".$user->get_email()."></p>";
-        echo "<p>Change password: <input type='password'></p>";
-        echo "<p>Confirm password: <input type='password'></p>";
+        echo "<form method='post'>";
+            echo "<p>Change username: <input type='text' name='username' value=".$user->get_name()."></p>";
+            echo "<p>Change email: <input type='text' name='email' value=".$user->get_email()."></p>";
+            echo "<p>Change password: <input type='password' name='paswordNew'></p>";
+            echo "<p>Confirm password: <input type='password' name='passwordConfirm'></p>";
+            echo "<button type='submit' name='saveNewInformation'>Save</button>";
+        echo "</form>";
 
+        if(isset($_POST['saveNewInformation'])){
+            echo "TEST";
+        }
     ?>
 </body>
 

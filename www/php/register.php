@@ -22,9 +22,9 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT * FROM Users WHERE UserName = ? AND PassWord = ?";
             $sqlSent = $db->prepare($sql);
-            if($sqlSent->execute([$userName, md5($passWord)])){
-                $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
-
+            $sqlSent->execute([$userName, md5($passWord)]);
+            $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
+            if(isset($results['ID'])){
                 $user = new User($userName, $results['EMail'], $results['admin']);
                 $_SESSION['User'] = serialize($user);
                 return true;
