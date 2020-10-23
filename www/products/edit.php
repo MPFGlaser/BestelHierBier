@@ -7,6 +7,11 @@ include('../php/classes/userClass.php');
 include('../php/opendb.php');
 include('../views/header.php');
 include_once('../php/product.php');
+
+if(!$user->is_admin()){
+    header("Location: /index.php");
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html>

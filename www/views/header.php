@@ -21,7 +21,6 @@
             } else if($currentPage != "login.php"){
                     echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
                 }
-
             ?>
         </div>
     </div>
