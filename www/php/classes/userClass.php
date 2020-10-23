@@ -17,5 +17,9 @@
         function is_admin(){
             return $this->_admin;
         }
+
+        function get_email(){
+            return $this->_email;
+        }
     }
 ?>

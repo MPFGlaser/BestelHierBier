@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 //For error viewing
 ini_set('display_errors', 1);
@@ -32,10 +32,10 @@ include_once('php/product.php')
                 <button>Search</button>
                 </br>
                 <p>Price</p>
-                <input type="range" min="1" max="100" value="50">
+                <input type="range" min="1" max="100" value="100">
                 </br>
                 <p>Score</p>
-                <input type="range" min="1" max="5" value="3">
+                <input type="range" min="1" max="5" value="5">
                 </br>
                 <p>Category</p>
                 <?php
@@ -75,9 +75,17 @@ include_once('php/product.php')
                 $id = $row["id"];
                 $abv = $row["abv"];
             ?>
-                <div class="product">
-                    <div class="productImage">
-                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                    <div class="product">
+                        <div class="productImage">
+                            <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                        </div>
+                        <div class="productDescription">
+                            <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
+                            <p><?= $category ?> by <?= $brewery ?></p>
+                        </div>
+                        <div class="button">
+                            <button onclick="window.location.href='/product.php?id=<?= $id ?>'">Learn more</button>
+                        </div>
                     </div>
                     <div class="productDescription">
                         <a href='/products/view.php?id=<?= $id ?>'>
