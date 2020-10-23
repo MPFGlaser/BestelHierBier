@@ -8,6 +8,10 @@
 
     include('php/classes/userClass.php');
     include('views/header.php');
+    if(!$user->is_admin()){
+        header("Location: /index.php");
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,38 +22,11 @@
         <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
     </head>
     <body>
-        <div class="grid-container-top">
-            <div class="grid-item">
-                <img src="images/tempLogo.png" alt="Temp Logo"/>
-            </div>
-            <div class="grid-item-top">
-                <p id="title">Bestel Hier Bier</p>
-            </div>
-            <div class="grid-item-top">
-                <?php
-                    if(isset($_SESSION['User'])){
-                        $user = unserialize($_SESSION['User']);
-                        if(!$user->is_admin()){
-                            header("Location: https://bestelhierbier.nl");
-                            die();
-                        }
-                        echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                        echo '<p class="info">Welkom '.$user->get_name().'</p>';
-
-                        if(isset($_POST['reset'])){
-                            session_destroy();
-                        }
-                    }else{
-                        header("Location: https://bestelhierbier.nl");
-                        die();
-                    }
-                ?>
-            </div>
-        </div>
         <div class="mobileLogo">
             <img src="images/tempLogo.png" alt="Temp Logo"/>
         </div>
-        <br/>
-
+        <br>
+        Admin page. <br>
+        Work in progress.
     </body>
 </html>
