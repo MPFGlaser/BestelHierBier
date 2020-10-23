@@ -43,6 +43,8 @@ include_once('../php/product.php');
             <p>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></p>
             <p>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></p>
             <p>imageURL: <input type="text" name="imageURL" value="<?= $beer->get_imageURL() ?>" /></p>
+            <button type="submit" name="cancel">Cancel</button>
+            <button type="reset" name="reset">Reset</button>
             <button type="submit" name="save">Save</button>
         </form>
 
@@ -71,6 +73,10 @@ include_once('../php/product.php');
                     echo "Something went wrong adding the product";
                 }
             }
+        }
+
+        if (isset($_POST['cancel'])){
+            header("Location: /index.php");
         }
         ?>
     </div>
