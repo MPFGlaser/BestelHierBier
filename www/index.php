@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 include('php/classes/userClass.php');
 include('php/opendb.php');
 include('views/header.php');
+include_once('php/product.php')
 
 ?>
 <!DOCTYPE html>
@@ -84,43 +85,34 @@ include('views/header.php');
 
             // Make it so only admins see the edit button
             echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
-
-            try {
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "SELECT * FROM beers";
-                $sqlSent = $db->prepare($sql);
-                $sqlSent->execute();
-                $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($beers as $row) {
-                    $name = $row["name"];
-                    $brewery = $row["brewery"];
-                    $category = $row["category"];
-                    $imgURL = $row["imageURL"];
-                    $id = $row["id"];
-                    $abv = $row["abv"];
-
+            
+            $beers = getAllProducts();
+            
+            foreach ($beers as $row) {
+                $name = $row["name"];
+                $brewery = $row["brewery"];
+                $category = $row["category"];
+                $imgURL = $row["imageURL"];
+                $id = $row["id"];
+                $abv = $row["abv"];
             ?>
-                    <div class="product">
-                        <div class="productImage">
-                            <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
-                        </div>
-                        <div class="productDescription">
-                            <a href='/products/view.php?id=<?= $id ?>'>
-                                <h1><?= $name ?> (<?= $abv ?>)</h1>
-                            </a><br>
-                            <p><?= $category ?> by <?= $brewery ?></p>
-                        </div>
-                        <div class="button">
-                            <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                            <!-- Make it so only admins see the edit button -->
-                            <?php echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
-                        </div>
+                <div class="product">
+                    <div class="productImage">
+                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
+                    <div class="productDescription">
+                        <a href='/products/view.php?id=<?= $id ?>'>
+                            <h1><?= $name ?> (<?= $abv ?>)</h1>
+                        </a><br>
+                        <p><?= $category ?> by <?= $brewery ?></p>
+                    </div>
+                    <div class="button">
+                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
+                        <!-- Make it so only admins see the edit button -->
+                        <?php echo (true == true) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                    </div>
+                </div>
             <?php
-                }
-            } catch (PDOException $ex) {
-                die("Error: " . $ex->getMessage());
             }
             ?>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+// Edits the product corresponding to the given id in the database with the given values.
 function editProduct($id, $name, $brewery, $category, $price, $abv, $description, $available, $country, $size, $imageURL)
 {
     include('../php/opendb.php');
@@ -17,6 +18,7 @@ function editProduct($id, $name, $brewery, $category, $price, $abv, $description
     }
 }
 
+// Adds a new product to the database with the given parameters.
 function newProduct($name, $brewery, $category, $price, $abv, $description, $available, $country, $size, $imageURL)
 {
     include('../php/opendb.php');
@@ -34,6 +36,7 @@ function newProduct($name, $brewery, $category, $price, $abv, $description, $ava
     }
 }
 
+// Returns a beer object with data corresponding to that of the entry with the given ID in the database.
 function getProduct($id): Beer
 {
     include('../php/classes/beerClass.php');
@@ -84,4 +87,20 @@ function getProduct($id): Beer
     }
 
     return $beer;
+}
+
+// Returns an array with all products found in the database.
+function getAllProducts(){
+    include('php/opendb.php');
+    $beers = null;
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM beers";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $beers;
 }

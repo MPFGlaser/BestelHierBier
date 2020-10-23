@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 include('../php/classes/userClass.php');
 include('../php/opendb.php');
 include('../views/header.php');
-include_once('../php/editproduct.php');
+include_once('../php/product.php');
 ?>
 <!DOCTYPE html>
 <html>
