@@ -75,20 +75,12 @@ include_once('php/product.php')
                 $id = $row["id"];
                 $abv = $row["abv"];
             ?>
-                    <div class="product">
-                        <div class="productImage">
-                            <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
-                        </div>
-                        <div class="productDescription">
-                            <a href='/product.php?id=<?= $id ?>'><h1><?= $name ?> (<?= $abv ?>)</h1></a><br>
-                            <p><?= $category ?> by <?= $brewery ?></p>
-                        </div>
-                        <div class="button">
-                            <button onclick="window.location.href='/product.php?id=<?= $id ?>'">Learn more</button>
-                        </div>
+                <div class="product">
+                    <div class="productImage">
+                        <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
                     <div class="productDescription">
-                        <a href='/products/view.php?id=<?= $id ?>'>
+                        <a href='/product.php?id=<?= $id ?>'>
                             <h1><?= $name ?> (<?= $abv ?>)</h1>
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>
