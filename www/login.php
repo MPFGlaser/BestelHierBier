@@ -81,7 +81,7 @@ include_once('php/register.php');
         }
     }
     if (isset($_POST['submitRegister'])) {
-        if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'])) {
+        if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'], $_POST['passWordConfirm'])) {
             header("Location: /index.php");
             die();
         } else {
