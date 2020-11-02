@@ -26,7 +26,7 @@ include_once('php/product.php')
     </div>
     <br />
     <div class="div-container-content">
-        <div class="filterBar">
+        <!-- <div class="filterBar"> -->
             <div class="filterMenu">
                 <input type=text placeholder="Start searching..."></input>
                 <button>SEARCH</button>
@@ -58,7 +58,7 @@ include_once('php/product.php')
                 }
                 ?>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="foundItems">
             <?php
 
@@ -75,10 +75,10 @@ include_once('php/product.php')
                 $abv = $row["abv"];
             ?>
                 <div class="product">
-                    <div class="productImage">
+                    <div class="product-image">
                         <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
-                    <div class="productDescription">
+                    <div class="product-description">
                         <a href='/products/view.php?id=<?= $id ?>'>
                             <div style="clear: both">
                                 <h1><?= $name ?></h1>
@@ -87,7 +87,7 @@ include_once('php/product.php')
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>
                     </div>
-                    <div>
+                    <div class="product-buttons">
                         <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
                         <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
                     </div>

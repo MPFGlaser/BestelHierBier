@@ -101,12 +101,16 @@ button:hover {
     grid-column-gap: 10px;
 }
 
+/* .filterBar {
+    height: 100%;
+} */
+
 .filterMenu {
     border-width: thin;
     border-style: none;
     max-width: 200px;
     min-width: 180px;
-    height: 100%;
+    height: inherit;
     border-radius: 7pt;
     padding: 10pt;
     background-color: #4e4e50;
@@ -132,7 +136,7 @@ button:hover {
 
 .product {
     display: grid;
-    grid-template-columns: 125pt auto 10%;
+    grid-template-columns: 125pt auto 25%;
     width: 100%;
     margin: auto;
     border-width: thin;
@@ -151,6 +155,21 @@ button:hover {
     max-height: 150px;
     max-width: 100%;
     padding: 5px;
+}
+
+.product-image {
+    border-style: solid;
+    border-radius: 10pt;
+    background-color: #1A1A1D;
+    border-width: 2pt;
+    border-color: #C3073F;
+    margin: 5pt;
+    height: fit-content;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .product p {
@@ -172,8 +191,20 @@ button:hover {
     color: #C3073F;
 }
 
-.productDescription a {
+.product-description a {
     text-decoration: none;
+}
+
+.product-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.product-buttons button {
+    margin-right: 5pt;
 }
 
 .productPage {
@@ -219,7 +250,6 @@ button:hover {
     max-height: 500px;
     max-width: auto;
     padding: 5px;
-    /* border-style: solid; */
     border-radius: 7pt;
     border-color: #6f2232;
 }
