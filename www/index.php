@@ -1,13 +1,14 @@
 <?php
-// session_start();
-
 //For error viewing
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include('php/classes/userClass.php');
-include('views/header.php');
-include_once('php/product.php')
+
+
+require_once('php/classes/userClass.php');
+include_once('views/header.php');
+require_once('php/populateFoundItems.php');
+require_once('php/product.php');
 
 ?>
 <!DOCTYPE html>
@@ -18,39 +19,40 @@ include_once('php/product.php')
     <title>Bestel Hier Bier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/productSearch.js" type="text/javascript"></script>
 </head>
 
 <body>
     <div class="div-container-content">
         <!-- <div class="filterBar"> -->
             <div class="filterMenu">
-                <input type=text placeholder="Start searching..."></input>
-                <button>SEARCH</button>
+                <input placeholder="Search" oninput="dynamicSearch(this.value)"></input>
                 </br>
                 <p>Price</p>
-                <input type="range" min="1" max="100" value="100">
+                <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
+                <label id="priceLabel">&#8364;100</label>
                 </br>
                 <p>Score</p>
-                <input type="range" min="1" max="5" value="5">
+                <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
+                <label id="ratingLabel">5</label>
                 </br>
                 <p>Category</p>
                 <?php
                 $categories = getCategories();
-                foreach ($categories as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
-                }
-                ?>
-                <p>Brewery</p>
-                <?php
                 $breweries = getBreweries();
+
+                foreach ($categories as &$value) {
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
+                }
+
+                echo "<p>Brewery</p>";
+
                 foreach ($breweries as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
                 }
                 ?>
             </div>
@@ -60,7 +62,8 @@ include_once('php/product.php')
 
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
 
-            $beers = getAllProducts();
+            // $beers = getAllProducts();
+            $beers = populatePrintFoundItems(false, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];

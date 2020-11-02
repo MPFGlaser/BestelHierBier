@@ -6,8 +6,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include('php/classes/userClass.php');
-    include('views/header.php');
+    include_once('php/classes/userClass.php');
+    include_once('views/header.php');
     if(!$user->is_admin()){
         header("Location: /index.php");
         die();
