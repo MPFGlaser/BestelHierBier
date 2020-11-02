@@ -392,3 +392,20 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: space-evenly;
 }
+
+.profile {
+    width: 15%;
+    min-width: 350px;
+    padding: 0.5% 1% 0.05% 1%;
+    margin: 1% auto;
+    border-radius: 10pt;
+    background-color: #4e4e50;
+    vertical-align: middle;
+}
+
+.profile div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
