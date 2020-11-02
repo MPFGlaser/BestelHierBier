@@ -26,10 +26,10 @@ include_once('php/product.php')
     </div>
     <br />
     <div class="div-container-content">
-        <div class="grid-item-content">
+        <div class="filterBar">
             <div class="filterMenu">
-                <input placeholder="Search"></input>
-                <button>Search</button>
+                <input type=text placeholder="Start searching..."></input>
+                <button>SEARCH</button>
                 </br>
                 <p>Price</p>
                 <input type="range" min="1" max="100" value="100">
@@ -62,7 +62,7 @@ include_once('php/product.php')
         <div class="foundItems">
             <?php
 
-            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
 
             $beers = getAllProducts();
 
@@ -76,17 +76,20 @@ include_once('php/product.php')
             ?>
                 <div class="product">
                     <div class="productImage">
-                        <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
                     <div class="productDescription">
-                        <a href='/product.php?id=<?= $id ?>'>
-                            <h1><?= $name ?> (<?= $abv ?>)</h1>
+                        <a href='/products/view.php?id=<?= $id ?>'>
+                            <div style="clear: both">
+                                <h1><?= $name ?></h1>
+                                <h2>(<?= $abv ?>)</h2>
+                            </div>
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>
                     </div>
-                    <div class="button">
-                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                    <div>
+                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
+                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
                     </div>
                 </div>
             <?php

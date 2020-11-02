@@ -1,26 +1,26 @@
 <?php session_start(); ?>
-<div class="grid-container-top">
+<div class="header">
         <div class="grid-item">
             <a href="/index.php"><img src="/images/tempLogo.png" alt="Temp Logo" /></a>
         </div>
         <div class="grid-item-top">
             <a href="/index.php"><h1 id="title">Bestel Hier Bier</h1></a>
         </div>
-        <div class="grid-item-top">
+        <div class="header-personal">
             <?php
             $currentPage = pathinfo($_SERVER["SCRIPT_FILENAME"], PATHINFO_BASENAME);
             if (isset($_SESSION['User'])) {
                 $user = unserialize($_SESSION['User']);
+                echo '<a href="/profile.php"><p class="info">Welcome, ' . $user->get_name() . '</p></a>';
+                echo '<a href="/profile.php"><img src=/images/user.jpg></img></a>';
                 echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
-                echo '<p class="info">Welkom ' . $user->get_name() . '</p>';
-
 
                 if (isset($_POST['reset'])) {
                     session_destroy();
                     header("Refresh:0");
                 }
             } else if($currentPage != "login.php"){
-                    echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
+                    echo ("<button onclick=\"window.location.href='/login.php'\">LOGIN</button>");
                 }
             ?>
         </div>

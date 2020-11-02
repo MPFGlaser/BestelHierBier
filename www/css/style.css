@@ -1,8 +1,16 @@
-.grid-container-top {
+.header {
     display: grid;
     grid-template-columns: auto auto auto;
     border-width: thin;
-    border-style: solid;
+    border-style: none;
+    border-radius: 7pt;
+    background-color: #4e4e50;
+    padding: 5pt;
+}
+
+.header a {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .grid-container-top a {
@@ -14,46 +22,77 @@
     display: none;
 }
 
-.header a {
-    text-decoration: none;
-    color: black;
-}
-
 #title {
     text-align: center;
     text-decoration: none;
+    font-family: Helvetica;
+    color: #ffffff;
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: #1A1A1D;
+    font-family: Helvetica;
+}
+
+input[type=text],
+input[type=password] {
+    display: block;
+    width: 100%;
+    border-radius: 50pt;
+    border-style: none;
+    padding: 5pt 10pt 5pt 10pt;
+    outline-style: none;
+    margin: 5pt auto 5pt auto;
+}
+
+button {
+    color: #ffffff;
+    font-family: Helvetica;
+    font-weight: bold;
+    background-color: #4e4e50;
+    border-radius: 30pt;
+    border-style: solid;
+    border-color: #C3073F;
+    cursor: pointer;
+    padding: 5pt 10pt 5pt 10pt;
+}
+
+button:hover {
+    border-color: #950740;
 }
 
 .info {
     float: right;
 }
 
-.loginBtn {
-    float: right;
-    background: linear-gradient(to bottom, #d6d6d6 5%, #bfbfbf 100%);
-    background-color: #d6d6d6;
-    display: inline-block;
-    cursor: pointer;
+.header-personal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header-personal button {
+    font-size: 15pt;
+    margin: 10pt;
+}
+
+.header-personal form {
+    margin: 0pt;
+}
+
+.header-personal img {
+    max-width: 35pt;
+    max-height: auto;
+    margin: 5pt;
+    border-radius: 50pt;
+    border-style: solid;
+    border-color: #C3073F;
+}
+
+.header-personal p {
     color: #ffffff;
-    font-family: Arial;
-    font-size: 23px;
-    font-weight: bold;
-    padding: 32px 32px;
-    text-decoration: none;
-}
-
-.loginBtn:hover {
-    background: linear-gradient(to bottom, #bfbfbf 5%, #d6d6d6 100%);
-    background-color: #bfbfbf;
-}
-
-.loginBtn:active {
-    position: relative;
-    top: 1px;
+    font-size: 15pt;
 }
 
 .div-container-content {
@@ -62,20 +101,33 @@ body {
     grid-column-gap: 10px;
 }
 
-.grid-item-content {
+.filterMenu {
     border-width: thin;
-    border-style: solid;
+    border-style: none;
     max-width: 200px;
     min-width: 180px;
+    height: 100%;
+    border-radius: 7pt;
+    padding: 10pt;
+    background-color: #4e4e50;
+}
+
+.filterMenu p {
+    color: #C3073F;
+    font-weight: bold;
+}
+
+.filterMenu label {
+    color: #ffffff;
 }
 
 .foundItems {
     border-width: thin;
-    border-style: solid;
+    border-style: none;
     display: grid;
     grid-template-columns: auto;
     grid-row-gap: 10px;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
 }
 
 .product {
@@ -84,7 +136,13 @@ body {
     width: 100%;
     margin: auto;
     border-width: thin;
-    border-style: solid;
+    border-style: none;
+    border-radius: 7pt;
+    background-color: #4e4e50;
+}
+
+.product button {
+    margin: 10%;
 }
 
 .product img {
@@ -95,22 +153,27 @@ body {
     padding: 5px;
 }
 
-.product button {
-    margin: 10%;
-}
-
 .product p {
     margin: 10pt;
+    color: #ffffff;
 }
 
 .product h1 {
-    margin: 10pt;
+    display: inline-block;
+    margin: 10pt 2pt 10pt 10pt;
     font-size: 150%;
+    color: #ffffff;
+}
+
+.product h2 {
+    display: inline-block;
+    margin: 10pt 10pt 10pt 2pt;
+    font-size: 150%;
+    color: #C3073F;
 }
 
 .productDescription a {
     text-decoration: none;
-    color: black;
 }
 
 .productPage {
@@ -136,7 +199,6 @@ body {
 }
 
 .productPageDescription {
-    /* position: relative; */
     width: 65%;
     margin: 1px;
 }
@@ -149,22 +211,22 @@ body {
     margin-top: 0px auto 0px auto;
     width: 30px;
     height: 17px;
-  }
+}
 
-  .switch div {
+.switch div {
     vertical-align: middle;
     height: 17pt;
 }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider */
-  .slider {
+}
+
+/* The slider */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -174,9 +236,9 @@ body {
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 13px;
@@ -186,32 +248,32 @@ body {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider {
+    background-color: #C3073F;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #C3073F;
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(13px);
     -ms-transform: translateX(13px);
     transform: translateX(13px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+}
 
-  /* END OF SLIDER */
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* END OF SLIDER */
 
 .loginForm div {
     display: block;
@@ -220,7 +282,7 @@ body {
     padding: 0.5% 1% 0.05% 1%;
     margin: auto;
     border-radius: 10pt;
-    background-color: gray;
+    background-color: #4e4e50;
 }
 
 .loginForm p {
@@ -230,31 +292,16 @@ body {
 .loginForm h1 {
     margin: 5pt;
     text-align: center;
-    font-family: Helvetica;
     font-size: 15pt;
-}
-
-.loginForm input {
-    display: block;
-    width: 100%;
-    border-radius: 50pt;
-    border-style: none;
-    padding: 5pt 10pt 5pt 10pt;
-    outline-style: none;
-    margin: 5pt auto 5pt auto;
 }
 
 .loginForm button {
     display: block;
     margin: auto;
-    border-radius: 10pt;
-    border-style: none;
-    padding: 5pt 10pt 5pt 10pt;
 }
 
 .loginFormRegisterToggle {
     text-align: end;
     margin: 10%;
     padding: 50pt;
-    /* width: fit-content; */
 }
