@@ -25,23 +25,21 @@ include('views/header.php');
             die();
         }
     ?>
-    <div class="mobileLogo">
-        <img src="images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
+    <div class="profile">
     <?php
         echo "<form method='post'>";
-            echo "<p>Change username: <input type='text' name='username' value=".$user->get_name()."></p>";
-            echo "<p>Change email: <input type='text' name='email' value=".$user->get_email()."></p>";
-            echo "<p>Change password: <input type='password' name='paswordNew'></p>";
-            echo "<p>Confirm password: <input type='password' name='passwordConfirm'></p>";
-            echo "<button type='submit' name='saveNewInformation'>Save</button>";
+            echo "<label>Change username: <input type='text' name='username' value=".$user->get_name()."></label>";
+            echo "<label>Change email: <input type='text' name='email' value=".$user->get_email()."></label>";
+            echo "<label>Change password: <input type='password' name='paswordNew'></label>";
+            echo "<label>Confirm password: <input type='password' name='passwordConfirm'></label>";
+            echo "<div><button type='submit' name='saveNewInformation'>Save</button></div>";
         echo "</form>";
 
         if(isset($_POST['saveNewInformation'])){
             echo "TEST";
         }
     ?>
+    </div>
 </body>
 
 </html>
