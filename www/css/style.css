@@ -18,10 +18,6 @@
     color: black;
 }
 
-.mobileLogo {
-    display: none;
-}
-
 #title {
     text-align: center;
     text-decoration: none;
@@ -347,6 +343,7 @@ input:checked+.slider:before {
     border-radius: 10pt;
     background-color: #4e4e50;
     vertical-align: middle;
+    text-align: center;
 }
 
 .loginForm p {
@@ -361,7 +358,6 @@ input:checked+.slider:before {
 }
 
 .loginForm button {
-    /* display: block; */
     vertical-align: middle;
     margin: auto;
 }
