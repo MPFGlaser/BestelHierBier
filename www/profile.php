@@ -25,10 +25,6 @@ include('views/header.php');
             die();
         }
     ?>
-    <div class="mobileLogo">
-        <img src="images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <?php
         echo "<form method='post'>";
             echo "<p>Change username: <input type='text' name='username' value=".$user->get_name()."></p>";

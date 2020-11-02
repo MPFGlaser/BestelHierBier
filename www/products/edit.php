@@ -24,11 +24,6 @@ if (!$user->is_admin()) {
 </head>
 
 <body>
-
-    <div class="mobileLogo">
-        <img src="../images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <div class="editForm">
         <?php
         $id = $_GET['id'];

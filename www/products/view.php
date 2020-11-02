@@ -19,10 +19,6 @@ include_once('../php/product.php');
 </head>
 
 <body>
-    <div class="mobileLogo">
-        <img src="../images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <div>
         <?php
         $id = $_GET['id'];
