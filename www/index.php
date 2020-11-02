@@ -32,29 +32,28 @@ include_once('php/product.php')
                 <button>Search</button>
                 </br>
                 <p>Price</p>
-                <input type="range" min="1" max="100" value="100">
+                <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
+                <label id="priceLabel">&#8364;100</label>
                 </br>
                 <p>Score</p>
-                <input type="range" min="1" max="5" value="5">
+                <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
+                <label id="ratingLabel">5</label>
                 </br>
                 <p>Category</p>
                 <?php
                 $categories = getCategories();
-                foreach ($categories as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
-                }
-                ?>
-                <p>Brewery</p>
-                <?php
                 $breweries = getBreweries();
+
+                foreach ($categories as &$value) {
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
+                }
+
+                echo "<p>Brewery</p>";
+
                 foreach ($breweries as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
                 }
                 ?>
             </div>
