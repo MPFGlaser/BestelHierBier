@@ -39,7 +39,7 @@ function newProduct($name, $brewery, $category, $price, $abv, $description, $ava
 // Returns a beer object with data corresponding to that of the entry with the given ID in the database.
 function getProduct($id): Beer
 {
-    include('../php/classes/beerClass.php');
+    include_once('../php/classes/beerClass.php');
     include('../php/opendb.php');
 
     $beer = null;
@@ -99,6 +99,22 @@ function getAllProducts()
         $sql = "SELECT * FROM beers";
         $sqlSent = $db->prepare($sql);
         $sqlSent->execute();
+        $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $beers;
+}
+
+function getProductByName($searchString){
+    include('opendb.php');
+    $beers = null;
+    $searchParam = '%'.$searchString.'%';
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM beers WHERE name LIKE ? OR brewery LIKE ?";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute([$searchParam, $searchParam]);
         $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("Error: " . $ex->getMessage());

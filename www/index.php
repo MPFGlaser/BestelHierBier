@@ -1,13 +1,14 @@
 <?php
-// session_start();
-
 //For error viewing
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include('php/classes/userClass.php');
-include('views/header.php');
-include_once('php/product.php')
+
+
+require_once('php/classes/userClass.php');
+include_once('views/header.php');
+require_once('php/populateFoundItems.php');
+require_once('php/product.php');
 
 ?>
 <!DOCTYPE html>
@@ -18,53 +19,51 @@ include_once('php/product.php')
     <title>Bestel Hier Bier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/productSearch.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <div class="mobileLogo">
-        <img src="images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <div class="div-container-content">
-        <div class="grid-item-content">
+        <!-- <div class="filterBar"> -->
             <div class="filterMenu">
-                <input placeholder="Search"></input>
-                <button>Search</button>
+                <input type="text" placeholder="Search" oninput="dynamicSearch(this.value)"></input>
                 </br>
                 <p>Price</p>
-                <input type="range" min="1" max="100" value="100">
+                <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
+                <label id="priceLabel">&#8364;100</label>
                 </br>
                 <p>Score</p>
-                <input type="range" min="1" max="5" value="5">
+                <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
+                <label id="ratingLabel">5</label>
                 </br>
                 <p>Category</p>
                 <?php
                 $categories = getCategories();
-                foreach ($categories as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
-                }
-                ?>
-                <p>Brewery</p>
-                <?php
                 $breweries = getBreweries();
+
+                foreach ($categories as &$value) {
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
+                }
+
+                echo "<p>Brewery</p>";
+
                 foreach ($breweries as &$value) {
-                ?>
-                    <input type="checkbox" id=<?= $value ?> name=<?= $value ?> value=<?= $value ?>>
-                    <label for=<?= $value ?>><?= $value ?></label><br>
-                <?php
+                    echo "<input type='checkbox' id=$value name=$value value=$value>";
+                    echo "<label for=$value>$value</label><br>";
                 }
                 ?>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="foundItems">
             <?php
 
-            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
 
-            $beers = getAllProducts();
+            // $beers = getAllProducts();
+            $beers = populatePrintFoundItems(false, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];
@@ -75,18 +74,21 @@ include_once('php/product.php')
                 $abv = $row["abv"];
             ?>
                 <div class="product">
-                    <div class="productImage">
-                        <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                    <div class="product-image">
+                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
-                    <div class="productDescription">
-                        <a href='/product.php?id=<?= $id ?>'>
-                            <h1><?= $name ?> (<?= $abv ?>)</h1>
+                    <div class="product-description">
+                        <a href='/products/view.php?id=<?= $id ?>'>
+                            <div style="clear: both">
+                                <h1><?= $name ?></h1>
+                                <h2>(<?= $abv ?>)</h2>
+                            </div>
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>
                     </div>
-                    <div class="button">
-                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                    <div class="product-buttons">
+                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
+                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
                     </div>
                 </div>
             <?php
