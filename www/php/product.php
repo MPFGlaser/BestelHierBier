@@ -106,6 +106,22 @@ function getAllProducts()
     return $beers;
 }
 
+function getProductByName($searchString){
+    include('opendb.php');
+    $beers = null;
+    $searchParam = '%'.$searchString.'%';
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM beers WHERE name LIKE ?";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute([$searchParam]);
+        $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $beers;
+}
+
 // Returns an array of all unique categories, sorted alphabetically.
 function getCategories()
 {
