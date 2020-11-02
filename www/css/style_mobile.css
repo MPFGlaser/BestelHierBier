@@ -92,4 +92,125 @@
         font-size: 200%;
         width: 100%;
     }
+
+    /* SLIDER */
+.switch {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0px auto 0px auto;
+    width: 90px;
+    height: 51px;
+  }
+
+  .switch div {
+    vertical-align: middle;
+    height: 51pt;
+}
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 39px;
+    width: 39px;
+    left: 6px;
+    bottom: 6px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(39px);
+    -ms-transform: translateX(39px);
+    transform: translateX(39px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* END OF SLIDER */
+
+    .loginForm div {
+        display: block;
+        width: 90%;
+        /* min-width: 350px; */
+        padding: 2% 5% 2% 5%;
+        margin: auto;
+        border-radius: 10pt;
+        background-color: gray;
+    }
+    
+    .loginForm p {
+        margin: 1pt 5pt 1pt 5pt;
+    }
+    
+    .loginForm h1 {
+        margin: 5pt;
+        text-align: center;
+        font-family: Helvetica;
+        font-size: 50pt;
+    }
+    
+    .loginForm input {
+        display: block;
+        width: auto;
+        font-size: 35pt;
+        border-radius: 50pt;
+        border-style: none;
+        padding: 5pt 30pt 5pt 30pt;
+        outline-style: none;
+        margin: 15pt auto 15pt auto;
+    }
+    
+    .loginForm button {
+        display: block;
+        font-size: 35pt;
+        margin: auto;
+        border-radius: 50pt;
+        border-style: none;
+        padding: 5pt 30pt 5pt 30pt;
+    }
+    
+    .loginFormRegisterToggle {
+        text-align: end;
+        font-size: 35pt;
+        margin: 10%;
+        padding: 50pt;
+        /* width: fit-content; */
+    }
 }
