@@ -20,7 +20,11 @@ function dynamicSearch(searchString){
                 var newWindowLocation = "'/products/view.php?id="+foundId+"'";
 
 
-                foundItemsClass.innerHTML += '<div class="product"><div class="productImage"><a href="../product.php?id='+foundId+'"><img src='+foundImgURL+' alt="'+foundName+'"/> </a> </div> <div class="productDescription"> <a href="../product.php?id='+foundId+'"> <h1>'+foundName+' ('+foundAbv+')</h1> </a><br> <p>'+foundCategory+' by '+foundBrewery+'</p> </div> <div class="button"> <button onclick="window.location.href='+newWindowLocation+'">Learn more</button> </div> </div>'
+                foundItemsClass.innerHTML += '<div class="product">\
+                    <div class="productImage"><a href="../product.php?id='+foundId+'">\
+                        <img src='+foundImgURL+' alt="'+foundName+'"/> </a> </div> <div class="productDescription">\
+                        <a href="../product.php?id='+foundId+'"> <h1>'+foundName+' ('+foundAbv+')</h1> </a><br> <p>'+foundCategory+' by '+foundBrewery+'</p></div>\
+                        <div class="button"> <button onclick="window.location.href='+newWindowLocation+'">Learn more</button> </div> </div>'
             }
         }
     });
