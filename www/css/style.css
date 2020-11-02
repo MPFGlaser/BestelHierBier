@@ -182,12 +182,35 @@ button:hover {
     width: auto;
     height: auto;
     margin: auto;
-    padding-top: 1%;
-    padding-right: 5%;
-    padding-bottom: 1%;
-    padding-left: 5%;
+    padding: 1% 5% 1% 5%;
     border-width: thin;
-    border-style: solid;
+    border-style: none;
+    border-radius: 7pt;
+    background-color: #4e4e50;
+}
+
+.productPage div {
+    color: #950740;
+}
+
+.productPage-title div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.productPage button {
+    width: fit-content;
+    height: fit-content;
+}
+
+.productPage h1 {
+    color: #C3073F;
+}
+
+.productPage h4 {
+    color: #ffffff;
 }
 
 .productPage img {
@@ -196,11 +219,15 @@ button:hover {
     max-height: 500px;
     max-width: auto;
     padding: 5px;
+    /* border-style: solid; */
+    border-radius: 7pt;
+    border-color: #6f2232;
 }
 
-.productPageDescription {
+.productPage p {
     width: 65%;
     margin: 1px;
+    color: #ffffff;
 }
 
 /* SLIDER */
@@ -276,13 +303,14 @@ input:checked+.slider:before {
 /* END OF SLIDER */
 
 .loginForm div {
-    display: block;
+    /* display: block; */
     width: 15%;
     min-width: 350px;
     padding: 0.5% 1% 0.05% 1%;
     margin: auto;
     border-radius: 10pt;
     background-color: #4e4e50;
+    vertical-align: middle;
 }
 
 .loginForm p {
@@ -292,11 +320,13 @@ input:checked+.slider:before {
 .loginForm h1 {
     margin: 5pt;
     text-align: center;
+    vertical-align: middle;
     font-size: 15pt;
 }
 
 .loginForm button {
-    display: block;
+    /* display: block; */
+    vertical-align: middle;
     margin: auto;
 }
 
