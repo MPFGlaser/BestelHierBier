@@ -112,9 +112,9 @@ function getProductByName($searchString){
     $searchParam = '%'.$searchString.'%';
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM beers WHERE name LIKE ?";
+        $sql = "SELECT * FROM beers WHERE name LIKE ? OR brewery LIKE ?";
         $sqlSent = $db->prepare($sql);
-        $sqlSent->execute([$searchParam]);
+        $sqlSent->execute([$searchParam, $searchParam]);
         $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $ex) {
         die("Error: " . $ex->getMessage());
