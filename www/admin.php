@@ -22,10 +22,6 @@
         <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
     </head>
     <body>
-        <div class="mobileLogo">
-            <img src="images/tempLogo.png" alt="Temp Logo"/>
-        </div>
-        <br>
         Admin page. <br>
         Work in progress.
     </body>

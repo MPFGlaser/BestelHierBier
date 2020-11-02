@@ -8,7 +8,7 @@ include('../php/opendb.php');
 include_once('../views/header.php');
 include_once('../php/product.php');
 
-if(!$user->is_admin()){
+if (!$user->is_admin()) {
     header("Location: /index.php");
     die();
 }
@@ -24,31 +24,32 @@ if(!$user->is_admin()){
 </head>
 
 <body>
-
-    <div class="mobileLogo">
-        <img src="../images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
-    <div>
+    <div class="editForm">
         <?php
         $id = $_GET['id'];
         $beer = getProduct($id);
         ?>
 
         <form method="POST" name="editForm">
-            <p>Name: <input type="text" name="name" value="<?= $beer->get_name() ?>" /></p>
-            <p>Brewery: <input type="text" name="brewery" value="<?= $beer->get_brewery() ?>" /></p>
-            <p>Category: <input type="text" name="category" value="<?= $beer->get_category() ?>" /></p>
-            <p>Price: <input type="text" name="price" value="<?= $beer->get_price() ?>" /></p>
-            <p>ABV: <input type="text" name="abv" value="<?= $beer->get_abv() ?>" /></p>
-            <p>Description: <textarea name="description" rows="10" cols="50"><?= $beer->get_description() ?></textarea></p>
-            <p>Available: <input type=checkbox name="available" <?php if ($beer->is_available() == '1') echo "checked='checked'"; ?> /></p>
-            <p>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></p>
-            <p>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></p>
-            <p>imageURL: <input type="text" name="imageURL" value="<?= $beer->get_imageURL() ?>" /></p>
-            <button type="submit" name="cancel">Cancel</button>
-            <button type="reset" name="reset">Reset</button>
-            <button type="submit" name="save">Save</button>
+            <label>Available: </label>
+            <label class="switch"><input type=checkbox name="available" <?php if ($beer->is_available() == '1') echo "checked='checked'"; ?> />
+                <span class="slider round"></span>
+            </label><br><br>
+            <label>Name: <input type="text" name="name" value="<?= $beer->get_name() ?>" /></label>
+            <label>Brewery: <input type="text" name="brewery" value="<?= $beer->get_brewery() ?>" /></label>
+            <label>Category: <input type="text" name="category" value="<?= $beer->get_category() ?>" /></label>
+            <label>Price: <input type="text" name="price" value="<?= $beer->get_price() ?>" /></label>
+            <label>ABV: <input type="text" name="abv" value="<?= $beer->get_abv() ?>" /></label>
+            <label>Description: <textarea name="description" rows="10" cols="50"><?= $beer->get_description() ?></textarea></label>
+
+            <label>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></label>
+            <label>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></label>
+            <label>imageURL: <input type="text" name="imageURL" value="<?= $beer->get_imageURL() ?>" /></label>
+            <div>
+                <button type="submit" name="cancel">Cancel</button>
+                <button type="reset" name="reset">Reset</button>
+                <button type="submit" name="save">Save</button>
+            </div>
         </form>
 
         <?php
@@ -78,7 +79,7 @@ if(!$user->is_admin()){
             }
         }
 
-        if (isset($_POST['cancel'])){
+        if (isset($_POST['cancel'])) {
             header("Location: /index.php");
         }
         ?>

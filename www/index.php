@@ -25,12 +25,8 @@ require_once('php/product.php');
 </head>
 
 <body>
-    <div class="mobileLogo">
-        <img src="images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <div class="div-container-content">
-        <div class="grid-item-content">
+        <!-- <div class="filterBar"> -->
             <div class="filterMenu">
                 <input placeholder="Search" oninput="dynamicSearch(this.value)"></input>
                 </br>
@@ -60,11 +56,11 @@ require_once('php/product.php');
                 }
                 ?>
             </div>
-        </div>
+        <!-- </div> -->
         <div class="foundItems">
             <?php
 
-            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
+            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
 
             // $beers = getAllProducts();
             $beers = populatePrintFoundItems(false, "");
@@ -78,18 +74,21 @@ require_once('php/product.php');
                 $abv = $row["abv"];
             ?>
                 <div class="product">
-                    <div class="productImage">
-                        <a href='/product.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
+                    <div class="product-image">
+                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
                     </div>
-                    <div class="productDescription">
-                        <a href='/product.php?id=<?= $id ?>'>
-                            <h1><?= $name ?> (<?= $abv ?>)</h1>
+                    <div class="product-description">
+                        <a href='/products/view.php?id=<?= $id ?>'>
+                            <div style="clear: both">
+                                <h1><?= $name ?></h1>
+                                <h2>(<?= $abv ?>)</h2>
+                            </div>
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>
                     </div>
-                    <div class="button">
-                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">Learn more</button>
-                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">Edit</button>" : '' ?>
+                    <div class="product-buttons">
+                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
+                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
                     </div>
                 </div>
             <?php

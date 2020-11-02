@@ -21,10 +21,6 @@ include_once('php/register.php');
 </head>
 
 <body>
-    <div class="mobileLogo">
-        <img src="../images/tempLogo.png" alt="Temp Logo" />
-    </div>
-    <br />
     <?php
     if (!isset($_SESSION['User'])) {
     ?>
