@@ -33,7 +33,6 @@ require_once('php/product.php');
         <div class="grid-item-content">
             <div class="filterMenu">
                 <input placeholder="Search" oninput="dynamicSearch(this.value)"></input>
-                <button>Search</button>
                 </br>
                 <p>Price</p>
                 <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
