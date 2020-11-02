@@ -61,6 +61,10 @@ button:hover {
     border-color: #950740;
 }
 
+label {
+    color: #ffffff;
+}
+
 .info {
     float: right;
 }
@@ -335,7 +339,6 @@ input:checked+.slider:before {
 /* END OF SLIDER */
 
 .loginForm div {
-    /* display: block; */
     width: 15%;
     min-width: 350px;
     padding: 0.5% 1% 0.05% 1%;
@@ -366,4 +369,25 @@ input:checked+.slider:before {
     text-align: end;
     margin: 10%;
     padding: 50pt;
+}
+
+.editForm {
+    width: 15%;
+    min-width: 350px;
+    padding: 0.5% 1% 0.05% 1%;
+    margin: auto;
+    border-radius: 10pt;
+    background-color: #4e4e50;
+    vertical-align: middle;
+}
+
+.editForm textarea {
+    width: 100%;
+}
+
+.editForm div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
