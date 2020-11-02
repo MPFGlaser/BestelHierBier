@@ -28,7 +28,7 @@ require_once('php/product.php');
     <div class="div-container-content">
         <!-- <div class="filterBar"> -->
             <div class="filterMenu">
-                <input placeholder="Search" oninput="dynamicSearch(this.value)"></input>
+                <input type="text" placeholder="Search" oninput="dynamicSearch(this.value)"></input>
                 </br>
                 <p>Price</p>
                 <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
