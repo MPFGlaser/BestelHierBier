@@ -39,7 +39,7 @@ function newProduct($name, $brewery, $category, $price, $abv, $description, $ava
 // Returns a beer object with data corresponding to that of the entry with the given ID in the database.
 function getProduct($id): Beer
 {
-    include('../php/classes/beerClass.php');
+    include_once('../php/classes/beerClass.php');
     include('../php/opendb.php');
 
     $beer = null;

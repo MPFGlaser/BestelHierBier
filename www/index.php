@@ -1,6 +1,4 @@
 <?php
-// session_start();
-
 //For error viewing
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -8,7 +6,7 @@ error_reporting(E_ALL);
 
 
 require_once('php/classes/userClass.php');
-include('views/header.php');
+include_once('views/header.php');
 require_once('php/populateFoundItems.php');
 require_once('php/product.php');
 
@@ -69,7 +67,7 @@ require_once('php/product.php');
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
 
             // $beers = getAllProducts();
-            $beers = populatePrintFoundItems(true, "");
+            $beers = populatePrintFoundItems(false, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];
