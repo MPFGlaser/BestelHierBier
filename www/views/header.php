@@ -17,6 +17,7 @@
 
                 if (isset($_POST['reset'])) {
                     session_destroy();
+                    header("Refresh:0");
                 }
             } else if($currentPage != "login.php"){
                     echo '<a href="/login.php" class="loginBtn">Login/Register</a>';
