@@ -38,6 +38,10 @@
         grid-template-columns: auto;
     }
 
+    .foundItems{
+        padding: 0;
+    }
+
     .product {
         display: grid;
         grid-template-columns: 25% auto 25%;
