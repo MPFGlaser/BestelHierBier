@@ -1,6 +1,6 @@
 function dynamicSearch(searchString){
     var foundItemsClass = document.getElementsByClassName('foundItems')[0];
-    foundItemsClass.innerHTML = "";
+    $(".foundItems").empty();
 
     var dataString = "&functionId=1&searchString="+searchString;
 
@@ -19,12 +19,24 @@ function dynamicSearch(searchString){
                 var foundAbv = beerArray[i]["abv"];
                 var newWindowLocation = "'/products/view.php?id="+foundId+"'";
 
-
-                foundItemsClass.innerHTML += '<div class="product">\
-                    <div class="productImage"><a href="../product.php?id='+foundId+'">\
-                        <img src='+foundImgURL+' alt="'+foundName+'"/> </a> </div> <div class="productDescription">\
-                        <a href="../product.php?id='+foundId+'"> <h1>'+foundName+' ('+foundAbv+')</h1> </a><br> <p>'+foundCategory+' by '+foundBrewery+'</p></div>\
-                        <div class="button"> <button onclick="window.location.href='+newWindowLocation+'">Learn more</button> </div> </div>'
+                foundItemsClass.innerHTML += '\
+                        <div class="product">\
+                            <div class="product-image">\
+                                <a href="/products/view.php?id='+foundId+'"><img src="/images/'+foundImgURL+'" alt="'+foundName+'" /> </a>\
+                            </div>\
+                            <div class="product-description">\
+                                <a href="/products/view.php?id='+foundId+'">\
+                                    <div style="clear: both">\
+                                        <h1>'+foundName+'</h1>\
+                                        <h2>('+foundAbv+')</h2>\
+                                    </div>\
+                                </a><br>\
+                                <p>'+foundCategory+' by '+foundBrewery+'</p>\
+                            </div>\
+                            <div class="product-buttons">\
+                                <button onclick="window.location.href='+newWindowLocation+'">LEARN MORE</button>\
+                            </div>\
+                        </div>';
             }
         }
     });

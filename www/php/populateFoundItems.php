@@ -1,10 +1,8 @@
 <?php
     function populatePrintFoundItems($isSearch, $searchString){
-        if(!$isSearch){
-            return getAllProducts();
-        }else{
+        if($isSearch){
             include_once('product.php');
-            return getProductByName($searchString);
         }
+        return getProductByName($searchString);
     }
 ?>
