@@ -5,9 +5,12 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include('php/classes/userClass.php');
+
+
+require_once('php/classes/userClass.php');
 include('views/header.php');
-include_once('php/product.php')
+require_once('php/populateFoundItems.php');
+require_once('php/product.php');
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +21,8 @@ include_once('php/product.php')
     <title>Bestel Hier Bier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+
+    <script src="js/productSearch.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,7 +33,7 @@ include_once('php/product.php')
     <div class="div-container-content">
         <div class="grid-item-content">
             <div class="filterMenu">
-                <input placeholder="Search"></input>
+                <input placeholder="Search" oninput="dynamicSearch(this.value)"></input>
                 <button>Search</button>
                 </br>
                 <p>Price</p>
@@ -63,7 +68,8 @@ include_once('php/product.php')
 
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">Add product</button>" : '';
 
-            $beers = getAllProducts();
+            // $beers = getAllProducts();
+            $beers = populatePrintFoundItems(true, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];
