@@ -29,7 +29,7 @@
             $sqlSent->execute([$userName, md5($passWord)]);
             $results = $sqlSent->fetch(PDO::FETCH_ASSOC);
             if(isset($results['ID'])){
-                $user = new User($userName, $results['EMail'], $results['admin']);
+                $user = new User($results['UserName'], $results['EMail'], $results['admin']);
                 $_SESSION['User'] = serialize($user);
                 return true;
             }else{
