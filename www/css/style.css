@@ -143,6 +143,7 @@ button:hover {
     border-style: none;
     border-radius: 7pt;
     background-color: #4e4e50;
+    padding: 5pt;
 }
 
 .product button {
@@ -154,7 +155,7 @@ button:hover {
     width: auto;
     max-height: 150px;
     max-width: 100%;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .product-image {
@@ -163,7 +164,8 @@ button:hover {
     background-color: #1A1A1D;
     border-width: 2pt;
     border-color: #C3073F;
-    margin: 5pt;
+    /* margin: 5pt; */
+    padding: 5pt;
     height: fit-content;
     width: auto;
     display: flex;
