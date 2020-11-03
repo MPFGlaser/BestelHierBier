@@ -37,7 +37,7 @@ if (!$user->is_admin()) {
                 <span class="slider round"></span>
             </label>
             <div class="editForm-image">
-            <img src="/images/<?= $beer->get_imageURL()?>" alt="<?= $beer->get_name()?>" /> </div>
+                <img src="/images/<?= $beer->get_imageURL() ?>" alt="<?= $beer->get_name() ?>" /> </div>
             <br><br>
             <label>Name: <input type="text" name="name" value="<?= $beer->get_name() ?>" /></label>
             <label>Brewery: <input type="text" name="brewery" value="<?= $beer->get_brewery() ?>" /></label>
@@ -59,11 +59,6 @@ if (!$user->is_admin()) {
                 <button type="submit" name="save">Save</button>
             </div>
         </form>
-        <!-- <form action="../php/uploadFile.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" name="submit">
-        </form> -->
 
         <?php
         if (isset($_POST['save'])) {
@@ -78,20 +73,39 @@ if (!$user->is_admin()) {
                 $checked = 0;
             }
 
-            if ($id != 0) {
-                if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_FILES['fileToUpload']['name'])) {
+            if (isset($_FILES['fileToUpload']['name']) && !empty($_FILES['fileToUpload']['name'])) {
+                if ($id != 0) {
+                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_FILES['fileToUpload']['name'])) {
 
-                    header("Location: /index.php");
-                    die();
+                        header("Location: /index.php");
+                        die();
+                    } else {
+                        echo "Something went wrong editing the product";
+                    }
                 } else {
-                    echo "Something went wrong editing the product";
+                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_FILES['fileToUpload']['name'])) {
+                        header("Location: /index.php");
+                        die();
+                    } else {
+                        echo "Something went wrong adding the product";
+                    }
                 }
             } else {
-                if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_POST['imageURL'])) {
-                    header("Location: /index.php");
-                    die();
+                if ($id != 0) {
+                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
+
+                        header("Location: /index.php");
+                        die();
+                    } else {
+                        echo "Something went wrong editing the product";
+                    }
                 } else {
-                    echo "Something went wrong adding the product";
+                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
+                        header("Location: /index.php");
+                        die();
+                    } else {
+                        echo "Something went wrong adding the product";
+                    }
                 }
             }
         }
