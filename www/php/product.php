@@ -122,14 +122,14 @@ function getProductByName($searchString){
     return $beers;
 }
 
-function getProductByCategory($categoryArray){
+function getProductByFilter($filterArray){
     include('opendb.php');
-    $categories = implode(",", array_map(function($string) {
+    $filteredValues = implode(",", array_map(function($string) {
         return '"' . $string . '"';
-    }, $categoryArray));
+    }, $filterArray));
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM beers WHERE category IN ($categories)";
+        $sql = "SELECT * FROM beers WHERE category IN ($filteredValues) OR brewery IN ($filteredValues)";
         $sqlSent = $db->prepare($sql);
         $sqlSent->execute();
         $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);

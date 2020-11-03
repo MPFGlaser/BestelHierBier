@@ -69,11 +69,11 @@ function dynamicSearch(searchString, isAdmin){
     });
 }
 
-function filterByCategory(isAdmin){
+function filterByCheckbox(isAdmin){
     var foundResults = document.getElementsByClassName('foundItems')[0];
     foundResults.innerHTML = "";
 
-    var allCheckboxes = document.getElementsByName('categoryCheckbox');
+    var allCheckboxes = document.getElementsByName('filterCheckbox');
     var checkedCheckboxes = [];
 
     for(var i = 0; i < allCheckboxes.length; i++){

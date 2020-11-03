@@ -6,8 +6,8 @@
         return getProductByName($searchString);
     }
 
-    function populateFoundItemsByCategory($dataArray){
+    function populateFoundItemsByFilter($dataArray){
         include_once('product.php');
-        return getProductByCategory($dataArray);
+        return getProductByFilter($dataArray);
     }
 ?>

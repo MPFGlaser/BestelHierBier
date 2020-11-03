@@ -13,7 +13,7 @@ error_reporting(E_ALL);
             break;
             case 2:
                 include_once('populateFoundItems.php');
-                echo json_encode(populateFoundItemsByCategory(json_decode(stripslashes($_POST['checkedArray']))));
+                echo json_encode(populateFoundItemsByFilter(json_decode(stripslashes($_POST['checkedArray']))));
                 return;
             break;
         }
