@@ -122,6 +122,23 @@ function getProductByName($searchString){
     return $beers;
 }
 
+function getProductByCategory($categoryArray){
+    include('opendb.php');
+    $categories = implode(",", array_map(function($string) {
+        return '"' . $string . '"';
+    }, $categoryArray));
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM beers WHERE category IN ($categories)";
+        $sqlSent = $db->prepare($sql);
+        $sqlSent->execute();
+        $beers = $sqlSent->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $ex) {
+        die("Error: " . $ex->getMessage());
+    }
+    return $beers;
+}
+
 // Returns an array of all unique categories, sorted alphabetically.
 function getCategories()
 {

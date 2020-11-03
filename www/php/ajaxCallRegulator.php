@@ -11,6 +11,11 @@ error_reporting(E_ALL);
                 echo json_encode(populatePrintFoundItems(true, $_POST['searchString']));
                 return;
             break;
+            case 2:
+                include_once('populateFoundItems.php');
+                echo json_encode(populateFoundItemsByCategory(json_decode(stripslashes($_POST['checkedArray']))));
+                return;
+            break;
         }
     }else{
         echo "Not allowed";

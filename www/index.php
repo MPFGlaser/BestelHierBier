@@ -49,8 +49,13 @@ require_once('php/product.php');
                 $breweries = getBreweries();
 
                 foreach ($categories as &$value) {
-                    echo "<input type='checkbox' id=$value name=$value value=$value>";
-                    echo "<label for=$value>$value</label><br>";
+                    if(isset($_SESSION['User']) && $user->is_admin()){
+                        echo "<input type='checkbox' id=$value name='categoryCheckbox' value=$value onclick='filterByCategory(1)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }else{
+                        echo "<input type='checkbox' id=$value name='categoryCheckbox' value=$value onclick='filterByCategory(0)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }
                 }
 
                 echo "<p>Brewery</p>";
