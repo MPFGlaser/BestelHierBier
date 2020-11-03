@@ -63,9 +63,6 @@ if (!$user->is_admin()) {
         <?php
         if (isset($_POST['save'])) {
             $checked = null;
-            $uploadInstance = new Image();
-            $uploadInstance->upload();
-
 
             if (isset($_POST['available'])) {
                 $checked = 1;
@@ -74,8 +71,13 @@ if (!$user->is_admin()) {
             }
 
             if (isset($_FILES['fileToUpload']['name']) && !empty($_FILES['fileToUpload']['name'])) {
+
+                $uploadInstance = new Image();
+                $uniqueFileName = uniqid(). '.' . strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
+                $uploadInstance->upload($uniqueFileName);
+
                 if ($id != 0) {
-                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_FILES['fileToUpload']['name'])) {
+                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
 
                         header("Location: /index.php");
                         die();
@@ -83,7 +85,7 @@ if (!$user->is_admin()) {
                         echo "Something went wrong editing the product";
                     }
                 } else {
-                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $_FILES['fileToUpload']['name'])) {
+                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
                         header("Location: /index.php");
                         die();
                     } else {
