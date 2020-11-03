@@ -9,7 +9,6 @@ require_once('php/classes/userClass.php');
 include_once('views/header.php');
 require_once('php/populateFoundItems.php');
 require_once('php/product.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +27,13 @@ require_once('php/product.php');
     <div class="div-container-content">
         <!-- <div class="filterBar"> -->
             <div class="filterMenu">
-                <input type="text" placeholder="Search" oninput="dynamicSearch(this.value)"></input>
+                <?php
+                    if(isset($_SESSION['User']) && $user->is_admin()){
+                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 1)"></input>';
+                    }else{
+                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 0)"></input>';
+                    }
+                ?>
                 </br>
                 <p>Price</p>
                 <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
@@ -59,11 +64,8 @@ require_once('php/product.php');
         <!-- </div> -->
         <div class="foundItems">
             <?php
-
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
-
-            // $beers = getAllProducts();
-            $beers = populatePrintFoundItems(false, "");
+                $beers = populatePrintFoundItems(false, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];
