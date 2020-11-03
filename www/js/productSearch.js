@@ -1,8 +1,9 @@
 function dynamicSearch(searchString){
-    var foundItemsClass = document.getElementsByClassName('foundItems')[0];
-    $(".foundItems").empty();
+    var beerResults = document.getElementsByClassName('beerResults')[0];
+    $(".beerResults").empty();
 
     var dataString = "&functionId=1&searchString="+searchString;
+    console.log("DS: " + dataString);
 
     $.ajax({
         url: "../php/ajaxCallRegulator.php",
@@ -19,7 +20,7 @@ function dynamicSearch(searchString){
                 var foundAbv = beerArray[i]["abv"];
                 var newWindowLocation = "'/products/view.php?id="+foundId+"'";
 
-                foundItemsClass.innerHTML += '\
+                beerResults.innerHTML += '\
                         <div class="product">\
                             <div class="product-image">\
                                 <a href="/products/view.php?id='+foundId+'"><img src="/images/'+foundImgURL+'" alt="'+foundName+'" /> </a>\
