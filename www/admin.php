@@ -20,7 +20,9 @@
         <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
     </head>
     <body>
-        Admin page. <br>
-        Work in progress.
+        <br>
+        <div class="adminContent">
+            <button onclick="window.location.href='/products/edit.php?id=0'">ADD PRODUCT</button>
+        </div>
     </body>
 </html>

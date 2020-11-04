@@ -64,6 +64,13 @@ include_once('php/updateUserInformation.php');
         }
     ?>
     </div>
+    <?php
+        if($user->is_admin()){
+            echo "<div class='adminContent'>";
+                echo "<button onclick=\"window.location.href='admin.php'\">TO ADMIN PAGE</button>";
+            echo "</div>";
+        }
+    ?>
 </body>
 
 </html>

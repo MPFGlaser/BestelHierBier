@@ -427,3 +427,12 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: center;
 }
+
+.adminContent{
+    text-align: center;
+    border-width: thin;
+    border-style: none;
+    border-radius: 7pt;
+    background-color: hsl(240, 1%, 31%);
+    padding: 5pt;
+}
