@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 include_once('php/classes/userClass.php');
 include('php/opendb.php');
 include_once('views/header.php');
+include_once('php/updateUserInformation.php');
 
 ?>
 <!DOCTYPE html>
@@ -30,16 +31,46 @@ include_once('views/header.php');
         echo "<form method='post'>";
             echo "<label>Change username: <input type='text' name='username' value=".$user->get_name()."></label>";
             echo "<label>Change email: <input type='text' name='email' value=".$user->get_email()."></label>";
-            echo "<label>Change password: <input type='password' name='paswordNew'></label>";
+            echo "<label>Change password: <input type='password' name='passwordNew'></label>";
             echo "<label>Confirm password: <input type='password' name='passwordConfirm'></label>";
             echo "<div><button type='submit' name='saveNewInformation'>Save</button></div>";
         echo "</form>";
 
         if(isset($_POST['saveNewInformation'])){
-            echo "TEST";
+            $newUsername = false;
+            $newEmail = false;
+            $newPassword = false;
+
+            if($_POST['username'] != $user->get_name() && $_POST['username'] != ""){
+                $newUsername = true;
+            }
+            if($_POST['email'] != $user->get_email() && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                $newEmail = true;
+            }
+            if($_POST['passwordNew'] != "" && $_POST['passwordNew'] == $_POST['passwordConfirm']){
+                $newPassword = true;
+            }
+            if($newUsername || $newEmail || $newPassword){
+                if(checkWhatToUpdate($newUsername, $newEmail, $newPassword, $_POST['username'], $_POST['email'], $_POST['passwordNew'], $user->get_id())){
+                    $user = new User($_POST['username'], $_POST['email'], $user->is_admin(), $user->get_id());
+                    $_SESSION['User'] = serialize($user);
+                    header("Refresh:0");
+                }else{
+                    echo "Something went wrong";
+                }
+            }else{
+                echo "No new or valid information was entered";
+            }
         }
     ?>
     </div>
+    <?php
+        if($user->is_admin()){
+            echo "<div class='adminContent'>";
+                echo "<button onclick=\"window.location.href='admin.php'\">TO ADMIN PAGE</button>";
+            echo "</div>";
+        }
+    ?>
 </body>
 
 </html>

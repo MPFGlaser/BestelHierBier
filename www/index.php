@@ -25,7 +25,6 @@ require_once('php/product.php');
 
 <body>
     <div class="div-container-content">
-        <!-- <div class="filterBar"> -->
             <div class="filterMenu">
                 <?php
                     if(isset($_SESSION['User']) && $user->is_admin()){
@@ -71,7 +70,6 @@ require_once('php/product.php');
                 }
                 ?>
             </div>
-        <!-- </div> -->
         <div class="foundItems">
             <?php
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';

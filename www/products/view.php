@@ -13,7 +13,6 @@ include_once('../php/product.php');
 
 <head>
     <meta charset="utf-8">
-    <!-- <title>Bestel Hier Bier</title> -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/style_mobile.css">
 </head>

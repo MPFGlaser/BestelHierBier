@@ -19,7 +19,6 @@ if (!$user->is_admin()) {
 
 <head>
     <meta charset="utf-8">
-    <!-- <title>Bestel Hier Bier</title> -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/style_mobile.css">
 </head>
@@ -48,7 +47,6 @@ if (!$user->is_admin()) {
 
             <label>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></label>
             <label>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></label>
-            <!-- <label>imageURL: <input type="text" name="imageURL" value="<?= $beer->get_imageURL() ?>" /></label> -->
             <label>Change image:
                 <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 <input type="file" name="fileToUpload" id="fileToUpload"></label>
@@ -62,58 +60,69 @@ if (!$user->is_admin()) {
 
         <?php
         if (isset($_POST['save'])) {
-            $checked = null;
+            if(checkIfAllInformationIsFilledIn($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $_POST['country'], $_POST['size'])){
+                $checked = null;
 
-            if (isset($_POST['available'])) {
-                $checked = 1;
-            } else {
-                $checked = 0;
-            }
+                if (isset($_POST['available'])) {
+                    $checked = 1;
+                } else {
+                    $checked = 0;
+                }
 
-            if (isset($_FILES['fileToUpload']['name']) && !empty($_FILES['fileToUpload']['name'])) {
+                if (isset($_FILES['fileToUpload']['name']) && !empty($_FILES['fileToUpload']['name'])) {
 
-                $uploadInstance = new Image();
-                $uniqueFileName = uniqid(). '.' . strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
-                $uploadInstance->upload($uniqueFileName);
+                    $uploadInstance = new Image();
+                    $uniqueFileName = uniqid(). '.' . strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
+                    $uploadInstance->upload($uniqueFileName);
 
-                if ($id != 0) {
-                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
+                    if ($id != 0) {
+                        if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
 
-                        header("Location: /index.php");
-                        die();
+                            header("Location: /index.php");
+                            die();
+                        } else {
+                            echo "Something went wrong editing the product";
+                        }
                     } else {
-                        echo "Something went wrong editing the product";
+                        if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
+                            header("Location: /index.php");
+                            die();
+                        } else {
+                            echo "Something went wrong adding the product";
+                        }
                     }
                 } else {
-                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $uniqueFileName)) {
-                        header("Location: /index.php");
-                        die();
-                    } else {
-                        echo "Something went wrong adding the product";
-                    }
-                }
-            } else {
-                if ($id != 0) {
-                    if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
+                    if ($id != 0) {
+                        if (editProduct($id, $_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
 
-                        header("Location: /index.php");
-                        die();
+                            header("Location: /index.php");
+                            die();
+                        } else {
+                            echo "Something went wrong editing the product";
+                        }
                     } else {
-                        echo "Something went wrong editing the product";
-                    }
-                } else {
-                    if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
-                        header("Location: /index.php");
-                        die();
-                    } else {
-                        echo "Something went wrong adding the product";
+                        if (newProduct($_POST['name'], $_POST['brewery'], $_POST['category'], $_POST['price'], $_POST['abv'], $_POST['description'], $checked, $_POST['country'], $_POST['size'], $beer->get_imageURL())) {
+                            header("Location: /index.php");
+                            die();
+                        } else {
+                            echo "Something went wrong adding the product";
+                        }
                     }
                 }
+            }else{
+                echo "Please make sure all information is entered and valid";
             }
         }
 
         if (isset($_POST['cancel'])) {
             header("Location: /index.php");
+        }
+
+        function checkIfAllInformationIsFilledIn($name, $brewery, $category, $price, $abv, $description, $country, $size){
+            if($name == "" || $brewery == "" || $category == "" || $price == "" || $abv == "" || $description == "" || $country == "" || $size == "" || $price <= 0){
+                return false;
+            }
+            return true;
         }
         ?>
     </div>
