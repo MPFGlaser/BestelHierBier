@@ -117,7 +117,7 @@ label {
     border-style: none;
     max-width: 200px;
     min-width: 180px;
-    height: inherit;
+    height: fit-content;
     border-radius: 7pt;
     padding: 10pt;
     background-color: #4e4e50;
@@ -136,6 +136,7 @@ label {
     border-width: thin;
     border-style: none;
     display: grid;
+    height: fit-content;
     grid-template-columns: auto;
     grid-row-gap: 10px;
     padding: 0px 0px 10px 10px;
@@ -392,6 +393,29 @@ input:checked+.slider:before {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.editForm-image {
+    border-style: solid;
+    border-radius: 10pt;
+    background-color: #1A1A1D;
+    border-width: 2pt;
+    border-color: #C3073F;
+    margin: 5pt;
+    padding: 5pt;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.editForm-image img {
+    height: auto;
+    width: auto;
+    max-height: 150px;
+    max-width: 100%;
 }
 
 .profile {

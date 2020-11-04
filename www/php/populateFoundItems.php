@@ -5,4 +5,9 @@
         }
         return getProductByName($searchString);
     }
+
+    function populateFoundItemsByFilter($dataArray){
+        include_once('product.php');
+        return getProductByFilter($dataArray);
+    }
 ?>

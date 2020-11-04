@@ -9,7 +9,6 @@ require_once('php/classes/userClass.php');
 include_once('views/header.php');
 require_once('php/populateFoundItems.php');
 require_once('php/product.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +27,13 @@ require_once('php/product.php');
     <div class="div-container-content">
         <!-- <div class="filterBar"> -->
             <div class="filterMenu">
-                <input type="text" placeholder="Search" oninput="dynamicSearch(this.value)"></input>
+                <?php
+                    if(isset($_SESSION['User']) && $user->is_admin()){
+                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 1)"></input>';
+                    }else{
+                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 0)"></input>';
+                    }
+                ?>
                 </br>
                 <p>Price</p>
                 <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
@@ -44,26 +49,33 @@ require_once('php/product.php');
                 $breweries = getBreweries();
 
                 foreach ($categories as &$value) {
-                    echo "<input type='checkbox' id=$value name=$value value=$value>";
-                    echo "<label for=$value>$value</label><br>";
+                    if(isset($_SESSION['User']) && $user->is_admin()){
+                        echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(1)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }else{
+                        echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(0)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }
                 }
 
                 echo "<p>Brewery</p>";
 
                 foreach ($breweries as &$value) {
-                    echo "<input type='checkbox' id=$value name=$value value=$value>";
-                    echo "<label for=$value>$value</label><br>";
+                    if(isset($_SESSION['User']) && $user->is_admin()){
+                        echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(1)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }else{
+                        echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(0)'>";
+                        echo "<label for=$value>$value</label><br>";
+                    }
                 }
                 ?>
             </div>
         <!-- </div> -->
         <div class="foundItems">
             <?php
-
             echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
-
-            // $beers = getAllProducts();
-            $beers = populatePrintFoundItems(false, "");
+                $beers = populatePrintFoundItems(false, "");
 
             foreach ($beers as $row) {
                 $name = $row["name"];
