@@ -41,7 +41,7 @@ include_once('php/updateUserInformation.php');
             $newEmail = false;
             $newPassword = false;
 
-            if($_POST['username'] != $user->get_name()){
+            if($_POST['username'] != $user->get_name() && $_POST['username'] != ""){
                 $newUsername = true;
             }
             if($_POST['email'] != $user->get_email() && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
@@ -59,7 +59,7 @@ include_once('php/updateUserInformation.php');
                     echo "Something went wrong";
                 }
             }else{
-                echo "No information was entered";
+                echo "No new or valid information was entered";
             }
         }
     ?>
