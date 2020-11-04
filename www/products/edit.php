@@ -19,7 +19,6 @@ if (!$user->is_admin()) {
 
 <head>
     <meta charset="utf-8">
-    <!-- <title>Bestel Hier Bier</title> -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/style_mobile.css">
 </head>
@@ -48,7 +47,6 @@ if (!$user->is_admin()) {
 
             <label>Country: <input type="text" name="country" value="<?= $beer->get_country() ?>" /></label>
             <label>Size: <input type="text" name="size" value="<?= $beer->get_size() ?>" /></label>
-            <!-- <label>imageURL: <input type="text" name="imageURL" value="<?= $beer->get_imageURL() ?>" /></label> -->
             <label>Change image:
                 <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
                 <input type="file" name="fileToUpload" id="fileToUpload"></label>

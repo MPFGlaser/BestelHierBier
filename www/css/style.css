@@ -1,6 +1,5 @@
 .header {
     display: grid;
-    /* grid-template-columns: auto auto auto; */
     grid-template-columns: auto auto;
     border-width: thin;
     border-style: none;
@@ -108,10 +107,6 @@ label {
     grid-column-gap: 10px;
 }
 
-/* .filterBar {
-    height: 100%;
-} */
-
 .filterMenu {
     border-width: thin;
     border-style: none;
@@ -162,7 +157,6 @@ label {
     width: auto;
     max-height: 150px;
     max-width: 100%;
-    /* padding: 5px; */
 }
 
 .product-image {
@@ -171,7 +165,6 @@ label {
     background-color: #1A1A1D;
     border-width: 2pt;
     border-color: #C3073F;
-    /* margin: 5pt; */
     padding: 5pt;
     height: fit-content;
     width: auto;

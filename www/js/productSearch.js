@@ -82,7 +82,6 @@ function filterByCheckbox(isAdmin){
         }
     }
 
-    // console.log(checkedCheckboxes);
     if(checkedCheckboxes.length > 0){
         var dataString = "&functionId=2&checkedArray="+JSON.stringify(checkedCheckboxes);
 

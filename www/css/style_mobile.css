@@ -45,7 +45,6 @@
     .product {
         display: grid;
         grid-template-columns: 25% auto 25%;
-        /* width: 99%; */
         font-size: 160%;
     }
 
