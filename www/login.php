@@ -68,7 +68,13 @@ include_once('php/register.php');
         }
     }
     if (isset($_POST['submitRegister'])) {
-        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            echo "The email adress you provided is invalid";
+        }else if($_POST['userName'] == ""){
+            echo "Please enter a valid username";
+        }else if($_POST['passWord'] == "" || $_POST['passWord'] != $_POST['passWordConfirm']){
+            echo "Please enter a valid password and check if it matches the confirmation password";
+        }else{
             if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'], $_POST['passWordConfirm'])) {
                 header("Location: /index.php");
                 die();
@@ -76,8 +82,6 @@ include_once('php/register.php');
                 echo "Something went wrong while registering. <br>";
                 echo "If this problem persists, please contact the owner of the website.";
             }
-        }else{
-            echo "The email adress you provided is invalid";
         }
     }
     ?>
