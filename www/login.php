@@ -28,7 +28,6 @@ include_once('php/register.php');
             <div class="loginContent">
                 <h1>User login</h1>
                 <div class="loginFormRegisterToggle">
-                    <!-- <label class="switchLabel">Test</label> -->
                     New user?
                     <label class="switch">
                         <input type="checkbox" id="registerCheckbox" onclick="registerMode()">
@@ -50,14 +49,6 @@ include_once('php/register.php');
                     registerMode()
                 </script>
             </div>
-            <!-- <div class="loginContent">
-                    <form method="POST" name="registerForm">
-                        <p>Username: <input type="text" required name="userName"/></p>
-                        <p>Password: <input type="password" required name="passWord"/></p>
-                        <p>Email: <input type="text" required name="email"/></p>
-                        <button type="submit" name="submitRegister">Register</button>
-                    </form>
-                </div> -->
         </div>
     <?php
     } else {
@@ -77,12 +68,16 @@ include_once('php/register.php');
         }
     }
     if (isset($_POST['submitRegister'])) {
-        if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'], $_POST['passWordConfirm'])) {
-            header("Location: /index.php");
-            die();
-        } else {
-            echo "Something went wrong while registering. <br>";
-            echo "If this problem persists, please contact the owner of the website.";
+        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'], $_POST['passWordConfirm'])) {
+                header("Location: /index.php");
+                die();
+            } else {
+                echo "Something went wrong while registering. <br>";
+                echo "If this problem persists, please contact the owner of the website.";
+            }
+        }else{
+            echo "The email adress you provided is invalid";
         }
     }
     ?>
