@@ -35,14 +35,16 @@ class UserController extends BaseController
             'EMail' => $user->email,
             'admin' => $user->admin
         );
-        $this->db->update("users", $data, $user->id);
+        $where = "id=" . $user->get_id();
+        $this->db->update("users", $data, $where);
     }
 
     // Updates the password of the given user
     public function updatePassword(User $user, $newPassword)
     {
         $data = array('PassWord' => md5($newPassword));
-        $this->db->update("users", $data, $user->id);
+        $where = "id=" . $user->get_id();
+        $this->db->update("users", $data, $where);
     }
 
     // Checks if the entered password matches the one found in the database
