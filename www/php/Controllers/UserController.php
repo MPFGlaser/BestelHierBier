@@ -8,12 +8,12 @@ use Models\User;
 class UserController extends BaseController
 {
     // Creates a user with the entered details
-    public function create(User $user, $password)
+    public function create($username, $email, $password)
     {
         $data = array(
-            'UserName' => $user->username,
+            'UserName' => $username,
             'PassWord' => md5($password),
-            'EMail' => $user->email
+            'EMail' => $email
         );
         $this->db->insert("users", $data);
         return $this->checkPassword($user, $password);
@@ -55,6 +55,8 @@ class UserController extends BaseController
             'PassWord' => md5($password)
         );
         $result = $this->db->select($sql, $params);
-        return new User($result[0]);
+        $user = new User($result[0]);
+        $_SESSION['User'] = serialize($user);
+        return $user;
     }
 }

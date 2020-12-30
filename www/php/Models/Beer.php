@@ -30,4 +30,59 @@ class Beer
         $this->size = $beer['size'];
         $this->imageURL = $beer['imageURL'];
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getBrewery()
+    {
+        return $this->brewery;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function getAbv()
+    {
+        return $this->abv;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getAvailable()
+    {
+        return $this->available;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function getImageURL()
+    {
+        return $this->imageURL;
+    }
 }

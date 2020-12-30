@@ -11,9 +11,9 @@ class User
 
     function __construct($user)
     {
-        $this->username = $user['username'];
-        $this->email = $user['email'];
+        $this->username = $user['UserName'];
+        $this->email = $user['EMail'];
         $this->admin = $user['admin'];
-        $this->id = $user['id'];
+        $this->id = $user['ID'];
     }
 }

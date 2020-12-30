@@ -9,4 +9,5 @@ use Controllers\BeerController;
 
 $test = new BeerController();
 
-print_r($test->getByFilter(["Van Moll"]));
+// print_r($test->getByFilter(["Van Moll"]));
+print_r(array_values($test->getCategories()));

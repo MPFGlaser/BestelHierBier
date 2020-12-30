@@ -49,6 +49,18 @@ class BeerController extends BaseController
         return new Beer($result[0]);
     }
 
+    public function getAll()
+    {
+        $sql = "SELECT * FROM beers";
+        $result = $this->db->select($sql);
+
+        $beers = array();
+        foreach ($result as $item) {
+            $beers[] = new Beer($item);
+        }
+        return $beers;
+    }
+
     public function getByName($name)
     {
         $sql = "SELECT * FROM beers WHERE name = :name";
@@ -80,12 +92,28 @@ class BeerController extends BaseController
     public function getCategories()
     {
         $sql = "SELECT DISTINCT category FROM beers";
-        return $this->db->select($sql);
+        $result = $this->db->select($sql);
+        $categories = array();
+
+        foreach ($result as $pair) {
+            foreach ($pair as $key => $value) {
+                $categories[] = $value;
+            }
+        }
+        return $categories;
     }
 
     public function getBreweries()
     {
         $sql = "SELECT DISTINCT brewery FROM beers";
-        return $this->db->select($sql);
+        $result = $this->db->select($sql);
+        $breweries = array();
+
+        foreach ($result as $pair) {
+            foreach ($pair as $key => $value) {
+                $breweries[] = $value;
+            }
+        }
+        return $breweries;
     }
 }
