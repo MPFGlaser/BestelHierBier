@@ -16,4 +16,23 @@ class User
         $this->admin = $user['admin'];
         $this->id = $user['ID'];
     }
+
+    function get_name()
+    {
+        return $this->username;
+    }
+
+    function get_id()
+    {
+        return $this->id;
+    }
+
+    function is_admin()
+    {
+        return $this->admin;
+    }
+
+    function get_email(){
+        return $this->_email;
+    }
 }

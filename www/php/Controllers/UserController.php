@@ -1,9 +1,10 @@
 <?php
-
 namespace Controllers;
 
 use Controllers\BaseController;
 use Models\User;
+
+session_start();
 
 class UserController extends BaseController
 {
@@ -16,7 +17,7 @@ class UserController extends BaseController
             'EMail' => $email
         );
         $this->db->insert("users", $data);
-        return $this->checkPassword($user, $password);
+        return $this->checkPassword($username, $password);
     }
 
     // Gets a user based on the given id
@@ -49,14 +50,19 @@ class UserController extends BaseController
     // Checks if the entered password matches the one found in the database
     public function checkPassword($username, $password)
     {
+        $user = null;
         $sql = "SELECT * FROM users WHERE UserName = :UserName AND PassWord = :PassWord";
         $params = array(
             'UserName' => $username,
             'PassWord' => md5($password)
         );
         $result = $this->db->select($sql, $params);
-        $user = new User($result[0]);
-        $_SESSION['User'] = serialize($user);
-        return $user;
+
+        if ($result != null) {
+            $user = new User($result[0]);
+            $_SESSION['User'] = serialize($user);
+            return true;
+        }
+        return false;
     }
 }
