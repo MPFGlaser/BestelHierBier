@@ -17,7 +17,7 @@
                     header("Refresh:0");
                 }
             } else if($currentPage != "login.php"){
-                    echo ("<button onclick=\"window.location.href='/login.php'\">LOGIN</button>");
+                    echo "<button onclick=\"window.location.href='/login.php'\">LOGIN</button>";
                 }
             ?>
         </div>

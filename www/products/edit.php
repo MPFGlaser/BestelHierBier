@@ -49,7 +49,7 @@ function goHome()
     <div class="editForm">
         <form method="POST" name="editForm" enctype="multipart/form-data">
             <label>Available: </label>
-            <label class=" switch"><input type=checkbox name="available" <?php if ($beer->getAvailable() == '1') echo "checked='checked'"; ?> />
+            <label class=" switch"><input type=checkbox name="available" <?php if ($beer->getAvailable() == '1'){ echo "checked='checked'"; }?> />
                 <span class="slider round"></span>
             </label>
             <div class="editForm-image">

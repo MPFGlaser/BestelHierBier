@@ -97,7 +97,7 @@ class BeerController extends BaseController
         $categories = array();
 
         foreach ($result as $pair) {
-            foreach ($pair as $key => $value) {
+            foreach ($pair as $value) {
                 $categories[] = $value;
             }
         }
@@ -111,7 +111,7 @@ class BeerController extends BaseController
         $breweries = array();
 
         foreach ($result as $pair) {
-            foreach ($pair as $key => $value) {
+            foreach ($pair as $value) {
                 $breweries[] = $value;
             }
         }
