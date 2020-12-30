@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <div class="header">
         <div class="grid-item-top">
             <a href="/index.php"><h1 id="title">Bestel Hier Bier</h1></a>

@@ -8,6 +8,7 @@ spl_autoload_register(function ($class_name) {
     include './php/' . $class_name . '.php';
 });
 require_once './php/mysql_credentials.php';
+include_once('views/header.php');
 
 use Controllers\UserController;
 

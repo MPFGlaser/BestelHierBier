@@ -4,8 +4,6 @@ namespace Controllers;
 use Controllers\BaseController;
 use Models\User;
 
-session_start();
-
 class UserController extends BaseController
 {
     // Creates a user with the entered details
