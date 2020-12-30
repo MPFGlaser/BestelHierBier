@@ -33,6 +33,6 @@ class User
     }
 
     function get_email(){
-        return $this->_email;
+        return $this->email;
     }
 }

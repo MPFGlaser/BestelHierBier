@@ -31,9 +31,9 @@ class UserController extends BaseController
     public function update(User $user)
     {
         $data = array(
-            'UserName' => $user->username,
-            'EMail' => $user->email,
-            'admin' => $user->admin
+            'UserName' => $user->get_name(),
+            'EMail' => $user->get_email(),
+            'admin' => $user->is_admin()
         );
         $where = "id=" . $user->get_id();
         $this->db->update("users", $data, $where);
