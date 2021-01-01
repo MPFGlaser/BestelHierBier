@@ -10,6 +10,7 @@ $userController = new UserController();
 <!DOCTYPE html>
 <html lang="nl">
 <script src="/js/RegisterMode.js"></script>
+<script src="/js/passwordstrength.js"></script>
 
 <head>
     <meta charset="utf-8">
@@ -39,7 +40,7 @@ $userController = new UserController();
                 <form method="POST" name="registerForm" id="registerForm">
                     <input type="text" required name="userName" placeholder="Username" />
                     <input type="text" required name="email" placeholder="Email Address" id="emailField" /></p>
-                    <input type="password" required name="passWord" placeholder="Password" />
+                    <input type="password" required name="passWord" placeholder="Password" id="password"/>
                     <input type="password" required name="passWordConfirm" placeholder="Confirm Password" />
                     <button type="submit" name="submitRegister" id="registerButton">Register</button>
                 </form>
