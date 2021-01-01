@@ -15,7 +15,7 @@ class PopulateFoundItems
     {
         $beerController = new BeerController();
         if ($isSearch) {
-            return $beerController->getByName($searchString);
+            return $beerController->getByNameOrBrewery($searchString);
         }
         return $beerController->getAll();
     }

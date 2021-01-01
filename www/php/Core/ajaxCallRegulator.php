@@ -7,31 +7,59 @@
  */
 
 namespace Core;
-//For error viewing
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-spl_autoload_register(function ($class_name) {
-    include $_SERVER['DOCUMENT_ROOT'].'/php/' . $class_name . '.php';
-});
-require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
+
+session_start();
 
 use Core\PopulateFoundItems;
+use Views\BeerCard;
 
+$beerCard = new BeerCard();
+
+$isAdmin = false;
+if (isset($_SESSION['User'])) {
+    $user = unserialize($_SESSION['User']);
+    if ($user->is_admin()) {
+        $isAdmin = true;
+    }
+}
 
 switch ($_POST['functionId']) {
     case 1:
         // Find beers by search string.
         $populate = new PopulateFoundItems();
-        echo json_encode($populate->found(true, $_POST['searchString']));
-        return;
+        $beers = $populate->found(true, $_POST['searchString']);
+        $results = "";
+
+        if ($isAdmin) {
+            $results .= '<button onclick=\"window.location.href="/products/edit.php?id=0"">ADD PRODUCT</button>';
+        }
+
+        foreach ($beers as $beer) {
+            // Make sure it knows about admin stuff
+            $results .= $beerCard->show($beer->getId(), $isAdmin);
+        }
+
+        echo $results;
         break;
     case 2:
         // Find beers by selection of checkboxes.
         $populate = new PopulateFoundItems();
-        echo json_encode($populate->foundByFilter(json_decode(stripslashes($_POST['checkedArray']))));
-        return;
+        $beers = $populate->foundByFilter(json_decode(stripslashes($_POST['checkedArray'])));
+        $results = "";
+
+        if ($isAdmin) {
+            $results .= '<button onclick=\"window.location.href="/products/edit.php?id=0"">ADD PRODUCT</button>';
+        }
+
+        foreach ($beers as $beer) {
+            // Make sure it knows about admin stuff
+            $results .= $beerCard->show($beer->getId(), $isAdmin);
+        }
+
+        echo $results;
         break;
 
     default:

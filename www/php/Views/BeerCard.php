@@ -27,7 +27,7 @@ class BeerCard
             '<div class="product-buttons">'.
                 '<button onclick=window.location.href="/products/view.php?id='.$beer->getId().'">LEARN MORE</button>';
 
-    if($admin == true){
+    if($admin){
         $html .= '<button onclick=window.location.href="/products/edit.php?id='.$beer->getId().'">EDIT</button>';
     }
 $html .= '</div>'.

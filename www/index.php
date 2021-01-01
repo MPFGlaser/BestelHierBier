@@ -31,19 +31,15 @@ $populate = new PopulateFoundItems();
         <div class="filterMenu">
             <?php
             if (isset($_SESSION['User']) && $user->is_admin()) {
-                echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 1)"></input>';
+                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 1), 500)"></input>';
             } else {
-                echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 0)"></input>';
+                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 0), 500)"></input>';
             }
             ?>
             </br>
             <p>Price</p>
             <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
             <label id="priceLabel">&#8364;100</label>
-            </br>
-            <p>Score</p>
-            <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
-            <label id="ratingLabel">5</label>
             </br>
             <p>Category</p>
             <?php
