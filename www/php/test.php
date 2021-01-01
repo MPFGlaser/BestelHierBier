@@ -3,7 +3,7 @@
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
-require_once './mysql_credentials.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
 
 use Controllers\BeerController;
 

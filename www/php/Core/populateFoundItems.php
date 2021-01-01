@@ -3,9 +3,9 @@
 namespace Core;
 
 spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/php/'.$class_name . '.php';
 });
-require_once 'php/mysql_credentials.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
 
 use Controllers\BeerController;
 
@@ -23,7 +23,6 @@ class PopulateFoundItems
     function foundByFilter($dataArray)
     {
         $beerController = new BeerController();
-        include_once('product.php');
         return $beerController->getByFilter($dataArray);
     }
 }

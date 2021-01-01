@@ -5,14 +5,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 spl_autoload_register(function ($class_name) {
-    include '../php/' . $class_name . '.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/php/' . $class_name . '.php';
 });
-require_once '../php/mysql_credentials.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
 
 use Controllers\BeerController;
 use Models\Beer;
 
-include_once('../views/header.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/views/header.php');
 
 $beerController = new BeerController();
 $user = unserialize($_SESSION['User']);
@@ -113,7 +113,7 @@ function goHome()
                 $beerToSave = new Beer($beerDetails);
 
                 // Temporarily (unfortunately) removed the validation to see if
-                //the update/create succeeded as the Database class does not (yet) 
+                //the update/create succeeded as the Database class does not (yet)
                 //return a boolean for succesful execution.
                 if ($id != 0) {
                     $beerController->update($beerToSave);
