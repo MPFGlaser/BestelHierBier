@@ -7,11 +7,11 @@
  */
 
 namespace Core;
+
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
 
 session_start();
-$user = unserialize($_SESSION['User']);
 
 use Core\PopulateFoundItems;
 use Views\BeerCard;
@@ -19,8 +19,11 @@ use Views\BeerCard;
 $beerCard = new BeerCard();
 
 $isAdmin = false;
-if (isset($_SESSION['User']) && $user->is_admin()) {
-    $isAdmin = true;
+if (isset($_SESSION['User'])) {
+    $user = unserialize($_SESSION['User']);
+    if ($user->is_admin()) {
+        $isAdmin = true;
+    }
 }
 
 switch ($_POST['functionId']) {
@@ -36,7 +39,7 @@ switch ($_POST['functionId']) {
 
         foreach ($beers as $beer) {
             // Make sure it knows about admin stuff
-            $results .= $beerCard->show($beer->getId(), false);
+            $results .= $beerCard->show($beer->getId(), $isAdmin);
         }
 
         echo $results;
@@ -53,7 +56,7 @@ switch ($_POST['functionId']) {
 
         foreach ($beers as $beer) {
             // Make sure it knows about admin stuff
-            $results .= $beerCard->show($beer->getId(), false);
+            $results .= $beerCard->show($beer->getId(), $isAdmin);
         }
 
         echo $results;

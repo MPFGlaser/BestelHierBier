@@ -31,9 +31,9 @@ $populate = new PopulateFoundItems();
         <div class="filterMenu">
             <?php
             if (isset($_SESSION['User']) && $user->is_admin()) {
-                echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 1)"></input>';
+                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 1), 500)"></input>';
             } else {
-                echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 0)"></input>';
+                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 0), 500)"></input>';
             }
             ?>
             </br>

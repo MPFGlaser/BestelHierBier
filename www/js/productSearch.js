@@ -11,6 +11,17 @@ function dynamicSearch(searchString, isAdmin) {
     });
 }
 
+const debounce = (func, delay) => {
+    let inDebounce
+    return function () {
+        const context = this
+        const args = arguments
+        clearTimeout(inDebounce)
+        inDebounce = setTimeout(() => func.apply(context, args), delay)
+    }
+}
+
+
 function filterByCheckbox(isAdmin) {
     let foundResults = $('.foundItems');
     var allCheckboxes = document.getElementsByName('filterCheckbox');
@@ -37,6 +48,6 @@ function filterByCheckbox(isAdmin) {
             }
         });
     } else {
-        dynamicSearch("", isAdmin);
+        debounce(dynamicSearch("", isAdmin), 500);
     }
 }
