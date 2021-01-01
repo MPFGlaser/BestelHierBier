@@ -1,14 +1,7 @@
 <?php
-//For error viewing
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-spl_autoload_register(function ($class_name) {
-    include './php/' . $class_name . '.php';
-});
-require_once './php/mysql_credentials.php';
-include_once('views/header.php');
+include $_SERVER['DOCUMENT_ROOT'].'/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/error_viewing.php';
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/Views/header.php');
 
 use Controllers\UserController;
 use Models\User;

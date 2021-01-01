@@ -1,25 +1,15 @@
 <?php
-//For error viewing
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
-spl_autoload_register(function ($class_name) {
-    include $_SERVER['DOCUMENT_ROOT'].'/php/' . $class_name . '.php';
-});
-require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/error_viewing.php';
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/Views/header.php');
 
 use Controllers\BeerController;
 use Controllers\UserController;
 use Core\PopulateFoundItems;
-use Models\Beer;
 
 $beerController = new BeerController();
 $userController = new UserController();
 $populate = new PopulateFoundItems();
-
-include_once('views/header.php');
 ?>
 
 <!DOCTYPE html>
