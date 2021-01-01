@@ -3,73 +3,90 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include_once('php/classes/userClass.php');
-include('php/opendb.php');
+
+spl_autoload_register(function ($class_name) {
+    include './php/' . $class_name . '.php';
+});
+require_once './php/mysql_credentials.php';
 include_once('views/header.php');
-include_once('php/updateUserInformation.php');
+
+use Controllers\UserController;
+use Models\User;
+
+$userController = new UserController();
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="nl">
+
 <head>
     <meta charset="utf-8">
     <title>Bestel Hier Bier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
 </head>
+
 <body>
     <?php
-        if(isset($_SESSION['User'])){
-            $user = unserialize($_SESSION['User']);
-        }else{
-            header("Location: https://bestelhierbier.nl/login.php");
-            die();
-        }
+    if (isset($_SESSION['User'])) {
+        $user = unserialize($_SESSION['User']);
+    } else {
+        header("Location: https://bestelhierbier.nl/login.php");
+        die();
+    }
     ?>
     <div class="profile">
-    <?php
+        <?php
         echo "<form method='post'>";
-            echo "<label>Change username: <input type='text' name='username' value=".$user->get_name()."></label>";
-            echo "<label>Change email: <input type='text' name='email' value=".$user->get_email()."></label>";
-            echo "<label>Change password: <input type='password' name='passwordNew'></label>";
-            echo "<label>Confirm password: <input type='password' name='passwordConfirm'></label>";
-            echo "<div><button type='submit' name='saveNewInformation'>Save</button></div>";
+        echo "<label>Change username: <input type='text' name='username' value=" . $user->get_name() . "></label>";
+        echo "<label>Change email: <input type='text' name='email' value=" . $user->get_email() . "></label>";
+        echo "<label>Change password: <input type='password' name='passwordNew'></label>";
+        echo "<label>Confirm password: <input type='password' name='passwordConfirm'></label>";
+        echo "<div><button type='submit' name='saveNewInformation'>Save</button></div>";
         echo "</form>";
 
-        if(isset($_POST['saveNewInformation'])){
+        if (isset($_POST['saveNewInformation'])) {
             $newUsername = false;
             $newEmail = false;
             $newPassword = false;
 
-            if($_POST['username'] != $user->get_name() && $_POST['username'] != ""){
+            if ($_POST['username'] != $user->get_name() && $_POST['username'] != "") {
                 $newUsername = true;
             }
-            if($_POST['email'] != $user->get_email() && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            if ($_POST['email'] != $user->get_email() && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $newEmail = true;
             }
-            if($_POST['passwordNew'] != "" && $_POST['passwordNew'] == $_POST['passwordConfirm']){
+            if ($_POST['passwordNew'] != "" && $_POST['passwordNew'] == $_POST['passwordConfirm']) {
                 $newPassword = true;
             }
-            if($newUsername || $newEmail || $newPassword){
-                if(checkWhatToUpdate($newUsername, $newEmail, $newPassword, $_POST['username'], $_POST['email'], $_POST['passwordNew'], $user->get_id())){
-                    $user = new User($_POST['username'], $_POST['email'], $user->is_admin(), $user->get_id());
-                    $_SESSION['User'] = serialize($user);
-                    header("Refresh:0");
-                }else{
-                    echo "Something went wrong";
+            if ($newUsername || $newEmail || $newPassword) {
+                $data = array(
+                    "UserName" => $_POST['username'],
+                    "EMail" => $_POST['email'],
+                    "admin" => $user->is_admin(),
+                    "ID" => $user->get_id()
+                );
+                $userWithUpdatedInfo = new User($data);
+                $userController->update($userWithUpdatedInfo);
+
+                if ($newPassword) {
+                    $userController->updatePassword($userWithUpdatedInfo, $_POST['passwordNew']);
                 }
-            }else{
+
+                $_SESSION['User'] = serialize($userWithUpdatedInfo);
+                header("Refresh:0");
+            } else {
                 echo "No new or valid information was entered";
             }
         }
-    ?>
+        ?>
     </div>
     <?php
-        if($user->is_admin()){
-            echo "<div class='adminContent'>";
-                echo "<button onclick=\"window.location.href='admin.php'\">TO ADMIN PAGE</button>";
-            echo "</div>";
-        }
+    if ($user->is_admin()) {
+        echo "<div class='adminContent'>";
+        echo "<button onclick=\"window.location.href='admin.php'\">TO ADMIN PAGE</button>";
+        echo "</div>";
+    }
     ?>
 </body>
 

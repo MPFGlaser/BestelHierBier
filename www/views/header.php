@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start() ?>
 <div class="header">
         <div class="grid-item-top">
             <a href="/index.php"><h1 id="title">Bestel Hier Bier</h1></a>
@@ -17,7 +17,7 @@
                     header("Refresh:0");
                 }
             } else if($currentPage != "login.php"){
-                    echo ("<button onclick=\"window.location.href='/login.php'\">LOGIN</button>");
+                    echo "<button onclick=\"window.location.href='/login.php'\">LOGIN</button>";
                 }
             ?>
         </div>

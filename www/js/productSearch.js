@@ -4,7 +4,7 @@ function dynamicSearch(searchString, isAdmin){
 
     var dataString = "&functionId=1&searchString="+searchString;
     $.ajax({
-        url: "../php/ajaxCallRegulator.php",
+        url: "../php/Core/ajaxCallRegulator.php",
         type: 'POST',
         data: dataString,
         success: function(data){
@@ -78,7 +78,7 @@ function filterByCheckbox(isAdmin){
 
     for(var i = 0; i < allCheckboxes.length; i++){
         if(allCheckboxes[i].checked){
-            checkedCheckboxes.push(allCheckboxes[i].value);
+            checkedCheckboxes.push(allCheckboxes[i].value); //van gaat mis
         }
     }
 
@@ -88,12 +88,14 @@ function filterByCheckbox(isAdmin){
         console.log(dataString);
 
         $.ajax({
-            url: "../php/ajaxCallRegulator.php",
+            url: "../php/Core/ajaxCallRegulator.php",
             type: 'POST',
             data: dataString,
             success: function(data){
 
                 var beerArray = JSON.parse(data);
+
+                console.log(beerArray);
 
                 if(isAdmin){
                     foundResults.innerHTML += "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>";

@@ -1,16 +1,21 @@
 <?php
-// session_start();
-
 //For error viewing
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+spl_autoload_register(function ($class_name) {
+    include './php/' . $class_name . '.php';
+});
+require_once './php/mysql_credentials.php';
 include_once('views/header.php');
-include_once('php/register.php');
+
+use Controllers\UserController;
+
+$userController = new UserController();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <script src="/js/RegisterMode.js"></script>
 
 <head>
@@ -59,7 +64,7 @@ include_once('php/register.php');
 
     <?php
     if (isset($_POST['submitLogin'])) {
-        if (loginUser($_POST['userName'], $_POST['passWord'])) {
+        if ($userController->checkPassword($_POST['userName'], $_POST['passWord'])) {
             header("Location: /index.php");
             die();
         } else {
@@ -68,14 +73,14 @@ include_once('php/register.php');
         }
     }
     if (isset($_POST['submitRegister'])) {
-        if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo "The email adress you provided is invalid";
-        }else if($_POST['userName'] == ""){
+        } else if ($_POST['userName'] == "") {
             echo "Please enter a valid username";
-        }else if($_POST['passWord'] == "" || $_POST['passWord'] != $_POST['passWordConfirm']){
+        } else if ($_POST['passWord'] == "" || $_POST['passWord'] != $_POST['passWordConfirm']) {
             echo "Please enter a valid password and check if it matches the confirmation password";
-        }else{
-            if (registerNewUser($_POST['userName'], $_POST['passWord'], $_POST['email'], $_POST['passWordConfirm'])) {
+        } else {
+            if ($userController->create($_POST['userName'], $_POST['passWord'], $_POST['email'])) {
                 header("Location: /index.php");
                 die();
             } else {
