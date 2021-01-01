@@ -61,11 +61,11 @@ include_once('views/header.php');
 
             foreach ($categories as &$value) {
                 if (isset($_SESSION['User']) && $user->is_admin()) {
-                    echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(1)'>";
-                    echo "<label for=$value>$value</label><br>";
+                    echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox(1)'>";
+                    echo "<label for='$value'>$value</label><br>";
                 } else {
-                    echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(0)'>";
-                    echo "<label for=$value>$value</label><br>";
+                    echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox(0)'>";
+                    echo "<label for='$value'>$value</label><br>";
                 }
             }
 
@@ -73,11 +73,11 @@ include_once('views/header.php');
 
             foreach ($breweries as &$value) {
                 if (isset($_SESSION['User']) && $user->is_admin()) {
-                    echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(1)'>";
-                    echo "<label for=$value>$value</label><br>";
+                    echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox(1)'>";
+                    echo "<label for='$value'>$value</label><br>";
                 } else {
-                    echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(0)'>";
-                    echo "<label for=$value>$value</label><br>";
+                    echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox(0)'>";
+                    echo "<label for='$value'>$value</label><br>";
                 }
             }
             ?>
