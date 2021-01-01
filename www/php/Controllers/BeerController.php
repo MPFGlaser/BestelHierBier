@@ -75,6 +75,22 @@ class BeerController extends BaseController
         return $beers;
     }
 
+    public function getByNameOrBrewery($search)
+    {
+        $sql = "SELECT * FROM beers WHERE name LIKE :name OR brewery LIKE :brewery";
+        $params = array(
+            'name' => "%".$search."%",
+            'brewery' => "%".$search."%"
+        );
+        $result = $this->db->select($sql, $params);
+
+        $beers = array();
+        foreach ($result as $item) {
+            $beers[] = new Beer($item);
+        }
+        return $beers;
+    }
+
     public function getByFilter($filterArray)
     {
         $filteredValues = implode(",", array_map(function ($string) {
