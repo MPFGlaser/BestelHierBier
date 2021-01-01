@@ -41,10 +41,6 @@ $populate = new PopulateFoundItems();
             <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
             <label id="priceLabel">&#8364;100</label>
             </br>
-            <p>Score</p>
-            <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
-            <label id="ratingLabel">5</label>
-            </br>
             <p>Category</p>
             <?php
             $categories = $beerController->getCategories();
