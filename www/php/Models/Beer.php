@@ -31,6 +31,15 @@ class Beer
         $this->imageURL = $beer['imageURL'];
     }
 
+    public function validate(){
+        if ($this->name == "" || $this->brewery == "" || $this->category == "" || $this->price == "" || $this->abv == "" || $this->description == "" || $this->country == "" || $this->size == "") {
+            return false;
+        }else if($this->price <= 0 || !is_numeric($this->price) || !is_numeric($this->abv) || !is_numeric($this->size)){
+            return false;
+        }
+        return true;
+    }
+
     public function getId()
     {
         return $this->id;
