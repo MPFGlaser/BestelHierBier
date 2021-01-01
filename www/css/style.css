@@ -262,6 +262,11 @@ label {
     color: #ffffff;
 }
 
+.errorText {
+    font-size: 150%;
+    color: #ffffff;
+}
+
 /* SLIDER */
 .switch {
     position: relative;
