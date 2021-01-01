@@ -1,11 +1,12 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/includes/autoload.php';
-include $_SERVER['DOCUMENT_ROOT'].'/includes/error_viewing.php';
-include_once($_SERVER['DOCUMENT_ROOT'].'/php/Views/header.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');
 
 use Controllers\BeerController;
 use Controllers\UserController;
 use Core\PopulateFoundItems;
+use Views\BeerCard;
 
 $beerController = new BeerController();
 $userController = new UserController();
@@ -74,36 +75,17 @@ $populate = new PopulateFoundItems();
         </div>
         <div class="foundItems">
             <?php
-            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
+            $isAdmin = false;
+            if (isset($_SESSION['User']) && $user->is_admin()) {
+                $isAdmin = true;
+                echo "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>";
+            }
+
             $beers = $populate->found(false, "");
+            $beerCard = new BeerCard();
 
             foreach ($beers as $beer) {
-                $name = $beer->getName();
-                $brewery = $beer->getBrewery();
-                $category = $beer->getCategory();
-                $imgURL = $beer->getImageURL();
-                $id = $beer->getId();
-                $abv = $beer->getAbv();
-            ?>
-                <div class="product">
-                    <div class="product-image">
-                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
-                    </div>
-                    <div class="product-description">
-                        <a href='/products/view.php?id=<?= $id ?>'>
-                            <div style="clear: both">
-                                <h1><?= $name ?></h1>
-                                <h2>(<?= $abv ?>)</h2>
-                            </div>
-                        </a><br>
-                        <p><?= $category ?> by <?= $brewery ?></p>
-                    </div>
-                    <div class="product-buttons">
-                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
-                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
-                    </div>
-                </div>
-            <?php
+                echo $beerCard->show($beer->getId(), $isAdmin);
             }
             ?>
         </div>
