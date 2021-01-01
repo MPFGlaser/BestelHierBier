@@ -103,7 +103,7 @@ include_once('views/header.php');
                         <a href='/products/view.php?id=<?= $id ?>'>
                             <div style="clear: both">
                                 <h1><?= $name ?></h1>
-                                <h2>(<?= $abv ?>)</h2>
+                                <h2>(<?= $abv ?>%)</h2>
                             </div>
                         </a><br>
                         <p><?= $category ?> by <?= $brewery ?></p>

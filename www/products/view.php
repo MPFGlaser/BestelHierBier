@@ -33,7 +33,7 @@ $beer = $beerController->getById($id);
         <div class="productPage">
             <div class="productPage-title">
                 <button onclick="window.location.href='/index.php'">RETURN</button>
-                <h1><?= $beer->getName() ?> - <?= $beer->getCategory() ?> (<?= $beer->getAbv() ?>)</h1>
+                <h1><?= $beer->getName() ?> - <?= $beer->getCategory() ?> (<?= $beer->getAbv() ?>%)</h1>
                 <a href=../images/<?= $beer->getImageURL() ?>> <img src=../images/<?= $beer->getImageURL() ?> alt="<?= $beer->getName() ?>" /> </a>
             </div>
             <div>
