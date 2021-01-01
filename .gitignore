@@ -1,6 +1,7 @@
 */.DS_Store
 .ftpconfig
 .ftpignore
+.ftpconfigOUTGOING
 mysql_credentials.php
 .vscode
 www/images/*

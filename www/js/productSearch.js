@@ -78,6 +78,7 @@ function filterByCheckbox(isAdmin){
 
     for(var i = 0; i < allCheckboxes.length; i++){
         if(allCheckboxes[i].checked){
+            console.log(allCheckboxes[i].value);
             checkedCheckboxes.push(allCheckboxes[i].value); //van gaat mis
         }
     }
