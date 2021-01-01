@@ -6,9 +6,9 @@ error_reporting(E_ALL);
 
 
 spl_autoload_register(function ($class_name) {
-    include './php/' . $class_name . '.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/php/' . $class_name . '.php';
 });
-require_once './php/mysql_credentials.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php/mysql_credentials.php';
 
 use Controllers\BeerController;
 use Controllers\UserController;
