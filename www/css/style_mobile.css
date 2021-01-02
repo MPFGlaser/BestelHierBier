@@ -32,6 +32,27 @@
 
     .filterMenu {
         display: none;
+        margin-bottom: 1%;
+        max-width: unset;
+    }
+
+    .filterMenu * {
+        font-size: 20pt;
+    }
+
+    .filter-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    input[type=checkbox] {
+        transform: scale(2);
+        margin: 10px;
+    }
+
+    .mobile-filter-button {
+        display: block;
+        margin-bottom: 1%;
     }
 
     .div-container-content {

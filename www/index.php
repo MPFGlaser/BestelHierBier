@@ -28,52 +28,43 @@ $populate = new PopulateFoundItems();
 
 <body>
     <div class="div-container-content">
+        <button class="mobile-filter-button" onclick="toggleFiltersMobile()">Filters</button>
+
         <div class="filterMenu">
-            <?php
-            if (isset($_SESSION['User']) && $user->is_admin()) {
-                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 1), 500)"></input>';
-            } else {
-                echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 0), 500)"></input>';
-            }
-            ?>
-            <p>Price</p>
-            <?php
-            if (isset($_SESSION['User']) && $user->is_admin()){
-                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(1), 100)" id="priceSlider">';
-            }else{
-                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(0), 100)" id="priceSlider">';
-            }
-             ?>
+            <input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value), 500)"></input>
 
-            <label id="priceLabel">&#8364;25</label>
-            </br>
-            <p>Category</p>
-            <?php
-            $categories = $beerController->getCategories();
-            $breweries = $beerController->getBreweries();
+            <div class="filter-container">
+                <div>
+                    <p>Price</p>
+                    <?php
+                    echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(), 100)" id="priceSlider">';
+                    ?>
+                    <label id="priceLabel">&#8364;25</label>
+                </div>
 
-            foreach ($categories as &$value) {
-                if (isset($_SESSION['User']) && $user->is_admin()) {
-                    echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox(1)'>";
-                    echo "<label for='$value'>$value</label><br>";
-                } else {
-                    echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox(0)'>";
-                    echo "<label for='$value'>$value</label><br>";
-                }
-            }
+                <div>
+                    <p>Category</p>
+                    <?php
+                    $categories = $beerController->getCategories();
+                    $breweries = $beerController->getBreweries();
 
-            echo "<p>Brewery</p>";
+                    foreach ($categories as &$value) {
+                        echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox()'>";
+                        echo "<label for='$value'>$value</label><br>";
+                    }
+                    ?>
+                </div>
 
-            foreach ($breweries as &$value) {
-                if (isset($_SESSION['User']) && $user->is_admin()) {
-                    echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox(1)'>";
-                    echo "<label for='$value'>$value</label><br>";
-                } else {
-                    echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox(0)'>";
-                    echo "<label for='$value'>$value</label><br>";
-                }
-            }
-            ?>
+                <div>
+                    <p>Brewery</p>
+                    <?php
+                    foreach ($breweries as &$value) {
+                        echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox()'>";
+                        echo "<label for='$value'>$value</label><br>";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="foundItems">
             <?php

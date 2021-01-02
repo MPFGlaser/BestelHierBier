@@ -127,6 +127,10 @@ label {
     color: #ffffff;
 }
 
+.mobile-filter-button {
+    display: none;
+}
+
 .foundItems {
     border-width: thin;
     border-style: none;

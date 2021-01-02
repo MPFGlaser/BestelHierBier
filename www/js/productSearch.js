@@ -1,4 +1,4 @@
-function dynamicSearch(searchString, isAdmin) {
+function dynamicSearch(searchString) {
     let foundResults = $('.foundItems');
     var dataString = "&functionId=1&searchString=" + searchString;
     $.ajax({
@@ -22,7 +22,7 @@ const debounce = (func, delay) => {
 }
 
 
-function filterByCheckbox(isAdmin) {
+function filterByCheckbox() {
     let foundResults = $('.foundItems');
     var allCheckboxes = document.getElementsByName('filterCheckbox');
     var checkedCheckboxes = [];
@@ -44,13 +44,13 @@ function filterByCheckbox(isAdmin) {
             }
         });
     } else {
-        debounce(dynamicSearch("", isAdmin), 500);
+        debounce(dynamicSearch(""), 500);
     }
 }
 
-function filterByPrice(isAdmin){
+function filterByPrice() {
     var slider = document.getElementById("priceSlider");
-    document.getElementById('priceLabel').innerHTML = '&#8364;'+ slider.value;
+    document.getElementById('priceLabel').innerHTML = '&#8364;' + slider.value;
 
     let foundResults = $('.foundItems');
     var dataString = "&functionId=3&searchPrice=" + slider.value;
@@ -63,4 +63,8 @@ function filterByPrice(isAdmin){
             foundResults.html(data);
         }
     });
+}
+
+function toggleFiltersMobile() {
+    $('.filterMenu').toggle();
 }
