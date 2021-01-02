@@ -106,6 +106,18 @@ class BeerController extends BaseController
         return $beers;
     }
 
+    public function getByPrice($price){
+        $sql = "SELECT * FROM beers WHERE price <= ($price)";
+
+        $result = $this->db->select($sql);
+
+        $beers = array();
+        foreach ($result as $item) {
+            $beers[] = new Beer($item);
+        }
+        return $beers;
+    }
+
     public function getCategories()
     {
         $sql = "SELECT DISTINCT category FROM beers";
