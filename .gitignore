@@ -6,3 +6,4 @@ mysql_credentials.php
 .vscode
 www/images/*
 !www/images/Error.gif
+!www/images/user.png
