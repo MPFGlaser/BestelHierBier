@@ -1,26 +1,17 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/includes/autoload.php';
-include $_SERVER['DOCUMENT_ROOT'].'/includes/error_viewing.php';
-include_once($_SERVER['DOCUMENT_ROOT'].'/php/Views/header.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/admin_only.php';
 
 use Controllers\BeerController;
 use Models\Beer;
 
 $beerController = new BeerController();
-$user = unserialize($_SESSION['User']);
 $id = $_GET['id'];
 $beer = $beerController->getById($id);
 
 
-if (!$user->is_admin()) {
-    goHome();
-}
-
-function goHome()
-{
-    header('Location: /index.php');
-    die();
-}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -46,7 +37,9 @@ function goHome()
     <div class="editForm">
         <form method="POST" name="editForm" enctype="multipart/form-data">
             <label>Available: </label>
-            <label class=" switch"><input type=checkbox name="available" <?php if ($beer->getAvailable() == '1'){ echo "checked='checked'"; }?> />
+            <label class=" switch"><input type=checkbox name="available" <?php if ($beer->getAvailable() == '1') {
+                                                                                echo "checked='checked'";
+                                                                            } ?> />
                 <span class="slider round"></span>
             </label>
             <div class="editForm-image">
@@ -106,7 +99,7 @@ function goHome()
             // Creates a beer object with the right details. Will be validated and then sent to either the create or update function.
             $beerToSave = new Beer($beerDetails);
 
-            if($beerToSave->validate()){
+            if ($beerToSave->validate()) {
                 if ($id != 0) {
                     $beerController->update($beerToSave);
                     goHome();
@@ -114,7 +107,7 @@ function goHome()
                     $beerController->create($beerToSave);
                     goHome();
                 }
-            }else {
+            } else {
                 echo "Please make sure all information is entered and valid";
             }
         }
