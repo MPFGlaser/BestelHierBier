@@ -9,3 +9,6 @@ RewriteRule ^(.*)$ $1.html [NC,L]
 
 ErrorDocument 404 /error.php
 ErrorDocument 500 /error.php
+
+Redirect /includes/ /error.php
+Redirect /php/ /error.php
