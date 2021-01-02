@@ -10,8 +10,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');
 <head>
     <meta charset="utf-8">
     <title>Error - Bestel Hier Bier</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style_mobile.css">
 </head>
 
 <body>
