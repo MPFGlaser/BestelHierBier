@@ -10,6 +10,7 @@ $userController = new UserController();
 <!DOCTYPE html>
 <html lang="nl">
 <script src="/js/RegisterMode.js"></script>
+<script src="/js/formValidation.js"></script>
 
 <head>
     <meta charset="utf-8">
@@ -32,12 +33,12 @@ $userController = new UserController();
                         <input type="checkbox" id="registerCheckbox" onclick="registerMode()">
                         <span class="slider round"></span>
                     </label> </div>
-                <form method="POST" name="loginForm" id="loginForm">
+                <form method="POST" name="loginForm" id="loginForm" onsubmit="return validateLogin()">
                     <input type="text" required name="userName" placeholder="Username" />
                     <input type="password" required name="passWord" placeholder="Password" />
                     <button type="submit" name="submitLogin" id="loginButton">Login</button>
                 </form>
-                <form method="POST" name="registerForm" id="registerForm">
+                <form method="POST" name="registerForm" id="registerForm" onsubmit="return validateRegister()">
                     <input type="text" required name="userName" placeholder="Username" />
                     <input type="text" required name="email" placeholder="Email Address" id="emailField" /></p>
                     <input type="password" onkeyup="trigger()" required name="passWord" placeholder="Password" id="password"/>

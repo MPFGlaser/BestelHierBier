@@ -40,9 +40,9 @@ $populate = new PopulateFoundItems();
             <p>Price</p>
             <?php
             if (isset($_SESSION['User']) && $user->is_admin()){
-                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(1), 500)" id="priceSlider">';
+                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(1), 100)" id="priceSlider">';
             }else{
-                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(0), 500)" id="priceSlider">';
+                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(0), 100)" id="priceSlider">';
             }
              ?>
 
