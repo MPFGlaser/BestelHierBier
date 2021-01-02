@@ -2,11 +2,7 @@
 include $_SERVER['DOCUMENT_ROOT'].'/includes/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'].'/includes/error_viewing.php';
 include_once($_SERVER['DOCUMENT_ROOT'].'/php/Views/header.php');
-
-if (!$user->is_admin()) {
-    header("Location: /index.php");
-    die();
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/admin_only.php';
 ?>
 <!DOCTYPE html>
 <html lang="nl">
