@@ -11,4 +11,4 @@ ErrorDocument 404 /error.php
 ErrorDocument 500 /error.php
 
 Redirect /includes/ /error.php
-Redirect /php/ /error.php
+#Redirect /php/ /error.php

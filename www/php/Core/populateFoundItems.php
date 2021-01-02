@@ -25,4 +25,9 @@ class PopulateFoundItems
         $beerController = new BeerController();
         return $beerController->getByFilter($dataArray);
     }
+
+    function foundByPrice($price){
+        $beerController = new BeerController();
+        return $beerController->getByPrice($price);
+    }
 }

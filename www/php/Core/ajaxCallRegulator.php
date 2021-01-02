@@ -61,6 +61,23 @@ switch ($_POST['functionId']) {
 
         echo $results;
         break;
+    case 3:
+        // Find beers by price.
+        $populate = new PopulateFoundItems();
+        $beers = $populate->foundByPrice($_POST['searchPrice']);
+        $results = "";
+
+        if ($isAdmin) {
+            $results .= '<button onclick=\"window.location.href="/products/edit.php?id=0"">ADD PRODUCT</button>';
+        }
+
+        foreach ($beers as $beer) {
+            // Make sure it knows about admin stuff
+            $results .= $beerCard->show($beer->getId(), $isAdmin);
+        }
+
+        echo $results;
+        break;
 
     default:
         // In case someone accidentaly stumbles accros this file.

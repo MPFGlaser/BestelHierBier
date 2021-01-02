@@ -38,8 +38,15 @@ $populate = new PopulateFoundItems();
             ?>
             </br>
             <p>Price</p>
-            <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
-            <label id="priceLabel">&#8364;100</label>
+            <?php
+            if (isset($_SESSION['User']) && $user->is_admin()){
+                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(1), 500)" id="priceSlider">';
+            }else{
+                echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(0), 500)" id="priceSlider">';
+            }
+             ?>
+
+            <label id="priceLabel">&#8364;25</label>
             </br>
             <p>Category</p>
             <?php
