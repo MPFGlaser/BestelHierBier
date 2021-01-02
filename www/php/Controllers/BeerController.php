@@ -10,16 +10,16 @@ class BeerController extends BaseController
     public function create(Beer $beer)
     {
         $data = array(
-            'name' => $beer->name,
-            'brewery' => $beer->brewery,
-            'category' => $beer->category,
-            'price' => $beer->price,
-            'abv' => $beer->abv,
-            'description' => $beer->description,
-            'available' => $beer->available,
-            'country' => $beer->country,
-            'size' => $beer->size,
-            'imageURL' => $beer->imageURL
+            'name' => $beer->getName(),
+            'brewery' => $beer->getBrewery(),
+            'category' => $beer->getCategory(),
+            'price' => $beer->getPrice(),
+            'abv' => $beer->getAbv(),
+            'description' => $beer->getDescription(),
+            'available' => $beer->getAvailable(),
+            'country' => $beer->getCountry(),
+            'size' => $beer->getSize(),
+            'imageURL' => $beer->getImageURL()
         );
         $this->db->insert("beers", $data);
     }
