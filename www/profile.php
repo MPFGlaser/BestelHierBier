@@ -17,6 +17,7 @@ $userController = new UserController();
     <title>Bestel Hier Bier</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+    <script src="/js/formValidation.js"></script>
 </head>
 
 <body>
@@ -30,11 +31,11 @@ $userController = new UserController();
     ?>
     <div class="profile">
         <?php
-        echo "<form method='post'>";
-        echo "<label>Change username: <input type='text' name='username' value=" . $user->get_name() . "></label>";
-        echo "<label>Change email: <input type='text' name='email' value=" . $user->get_email() . "></label>";
-        echo "<label>Change password: <input type='password' name='passwordNew'></label>";
-        echo "<label>Confirm password: <input type='password' name='passwordConfirm'></label>";
+        echo "<form method='post' name='editInformation' id='editInformation' onsubmit='return validateEditUserData()'>";
+        echo "<label>Change username: <input type='text' required name='username' value=" . $user->get_name() . "></label>";
+        echo "<label>Change email: <input type='text' required name='email' value=" . $user->get_email() . "></label>";
+        echo "<label>Change password: <input type='password' required name='passwordNew'></label>";
+        echo "<label>Confirm password: <input type='password required' name='passwordConfirm'></label>";
         echo "<div><button type='submit' name='saveNewInformation'>Save</button></div>";
         echo "</form>";
 
