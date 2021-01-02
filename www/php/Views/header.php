@@ -9,7 +9,7 @@
             if (isset($_SESSION['User'])) {
                 $user = unserialize($_SESSION['User']);
                 echo '<a href="/profile.php"><p class="info">Welcome, ' . $user->get_name() . '</p></a>';
-                echo '<a href="/profile.php"><img src=/images/user.jpg></img></a>';
+                echo '<a href="/profile.php"><img src=/images/user.png></img></a>';
                 echo "<form class='info' method='post'><button name='reset'>Logout</button></form>";
 
                 if (isset($_POST['reset'])) {
