@@ -1,17 +1,20 @@
 <?php
-//For error viewing
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');
 
+use Controllers\BeerController;
+use Controllers\UserController;
+use Core\PopulateFoundItems;
+use Views\BeerCard;
 
-require_once('php/classes/userClass.php');
-include_once('views/header.php');
-require_once('php/populateFoundItems.php');
-require_once('php/product.php');
+$beerController = new BeerController();
+$userController = new UserController();
+$populate = new PopulateFoundItems();
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 
 <head>
     <meta charset="utf-8">
@@ -25,83 +28,57 @@ require_once('php/product.php');
 
 <body>
     <div class="div-container-content">
-            <div class="filterMenu">
-                <?php
-                    if(isset($_SESSION['User']) && $user->is_admin()){
-                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 1)"></input>';
-                    }else{
-                        echo '<input type="text" placeholder="Search" oninput="dynamicSearch(this.value, 0)"></input>';
-                    }
-                ?>
-                </br>
-                <p>Price</p>
-                <input type="range" min="1" max="100" value="100" oninput="document.getElementById('priceLabel').innerHTML = '&#8364;'+this.value">
-                <label id="priceLabel">&#8364;100</label>
-                </br>
-                <p>Score</p>
-                <input type="range" min="1" max="5" value="5" oninput="document.getElementById('ratingLabel').innerHTML = this.value">
-                <label id="ratingLabel">5</label>
-                </br>
-                <p>Category</p>
-                <?php
-                $categories = getCategories();
-                $breweries = getBreweries();
+        <button class="mobile-filter-button" onclick="toggleFiltersMobile()">Filters</button>
 
-                foreach ($categories as &$value) {
-                    if(isset($_SESSION['User']) && $user->is_admin()){
-                        echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(1)'>";
-                        echo "<label for=$value>$value</label><br>";
-                    }else{
-                        echo "<input type='checkbox' id=$value name='filterCheckbox' value=$value onclick='filterByCheckbox(0)'>";
-                        echo "<label for=$value>$value</label><br>";
-                    }
-                }
+        <div class="filterMenu">
+            <input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value), 500)"></input>
 
-                echo "<p>Brewery</p>";
+            <div class="filter-container">
+                <div>
+                    <p>Price</p>
+                    <?php
+                    echo '<input type="range" min="1" max="25" value="100" oninput="debounce(filterByPrice(), 100)" id="priceSlider">';
+                    ?>
+                    <label id="priceLabel">&#8364;25</label>
+                </div>
 
-                foreach ($breweries as &$value) {
-                    if(isset($_SESSION['User']) && $user->is_admin()){
-                        echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(1)'>";
-                        echo "<label for=$value>$value</label><br>";
-                    }else{
-                        echo "<input type='checkbox' id=$value name=filterCheckbox value=$value onclick='filterByCheckbox(0)'>";
-                        echo "<label for=$value>$value</label><br>";
+                <div>
+                    <p>Category</p>
+                    <?php
+                    $categories = $beerController->getCategories();
+                    $breweries = $beerController->getBreweries();
+
+                    foreach ($categories as &$value) {
+                        echo "<input type='checkbox' id='$value' name='filterCheckbox' value='$value' onclick='filterByCheckbox()'>";
+                        echo "<label for='$value'>$value</label><br>";
                     }
-                }
-                ?>
+                    ?>
+                </div>
+
+                <div>
+                    <p>Brewery</p>
+                    <?php
+                    foreach ($breweries as &$value) {
+                        echo "<input type='checkbox' id='$value' name=filterCheckbox value='$value' onclick='filterByCheckbox()'>";
+                        echo "<label for='$value'>$value</label><br>";
+                    }
+                    ?>
+                </div>
             </div>
+        </div>
         <div class="foundItems">
             <?php
-            echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>" : '';
-                $beers = populatePrintFoundItems(false, "");
+            $isAdmin = false;
+            if (isset($_SESSION['User']) && $user->is_admin()) {
+                $isAdmin = true;
+                echo "<button onclick=\"window.location.href='/products/edit.php?id=0'\">ADD PRODUCT</button>";
+            }
 
-            foreach ($beers as $row) {
-                $name = $row["name"];
-                $brewery = $row["brewery"];
-                $category = $row["category"];
-                $imgURL = $row["imageURL"];
-                $id = $row["id"];
-                $abv = $row["abv"];
-            ?>
-                <div class="product">
-                    <div class="product-image">
-                        <a href='/products/view.php?id=<?= $id ?>'><img src=/images/<?= $imgURL ?> alt=<?= $name ?> /> </a>
-                    </div>
-                    <div class="product-description">
-                        <a href='/products/view.php?id=<?= $id ?>'>
-                            <div style="clear: both">
-                                <h1><?= $name ?></h1>
-                                <h2>(<?= $abv ?>)</h2>
-                            </div>
-                        </a><br>
-                        <p><?= $category ?> by <?= $brewery ?></p>
-                    </div>
-                    <div class="product-buttons">
-                        <button onclick="window.location.href='/products/view.php?id=<?= $id ?>'">LEARN MORE</button>
-                        <?php echo (isset($_SESSION['User']) && $user->is_admin()) ? "<button onclick=\"window.location.href='/products/edit.php?id=$id'\">EDIT</button>" : '' ?>
-                    </div>
-                </div>
-            <?php
+            $beers = $populate->found(false, "");
+            $beerCard = new BeerCard();
+
+            foreach ($beers as $beer) {
+                echo $beerCard->show($beer->getId(), $isAdmin);
             }
             ?>
         </div>

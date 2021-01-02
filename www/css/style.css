@@ -127,6 +127,10 @@ label {
     color: #ffffff;
 }
 
+.mobile-filter-button {
+    display: none;
+}
+
 .foundItems {
     border-width: thin;
     border-style: none;
@@ -259,6 +263,11 @@ label {
 .productPage p {
     width: 65%;
     margin: 1px;
+    color: #ffffff;
+}
+
+.errorText {
+    font-size: 150%;
     color: #ffffff;
 }
 

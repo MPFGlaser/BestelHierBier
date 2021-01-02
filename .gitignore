@@ -1,11 +1,9 @@
 */.DS_Store
 .ftpconfig
 .ftpignore
-mysql_connect.php
+.ftpconfigOUTGOING
+mysql_credentials.php
 .vscode
-www/images/1.png
-www/images/2.png
-www/images/3.png
-www/images/4.png
-www/images/5.png
-www/images/6.png
+www/images/*
+!www/images/Error.gif
+!www/images/user.png
