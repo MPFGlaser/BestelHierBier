@@ -1,4 +1,5 @@
 <?php
+// echo phpinfo();
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
 include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');

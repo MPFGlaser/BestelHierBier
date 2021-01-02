@@ -3,7 +3,6 @@ const weak = document.querySelector(".weak");
 const medium = document.querySelector(".medium");
 const strong = document.querySelector(".strong");
 const text = document.querySelector(".text");
-const showBtn = document.querySelector(".showBtn");
 let regExpWeak = /[a-z]/;
 let regExpMedium = /\d+/;
 let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
@@ -39,21 +38,8 @@ function trigger(){
       strong.classList.remove("active");
       text.classList.remove("strong");
     }
-    showBtn.style.display = "block";
-    showBtn.onclick = function(){
-      if(input.type == "password"){
-        input.type = "text";
-        showBtn.textContent = "HIDE";
-        showBtn.style.color = "#23ad5c";
-      }else{
-        input.type = "password";
-        showBtn.textContent = "SHOW";
-        showBtn.style.color = "#000";
-      }
-    }
   }else{
     indicator.style.display = "none";
     text.style.display = "none";
-    showBtn.style.display = "none";
   }
 }
