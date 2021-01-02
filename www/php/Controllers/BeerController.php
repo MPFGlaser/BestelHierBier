@@ -47,6 +47,10 @@ class BeerController extends BaseController
         $sql = "SELECT * FROM beers WHERE id = :id";
         $params = array('id' => $id);
         $result = $this->db->select($sql, $params);
+        if($result == null)
+        {
+            return null;
+        }
         return new Beer($result[0]);
     }
 
