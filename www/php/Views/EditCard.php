@@ -40,10 +40,10 @@ class EditCard
             $imageURL = $beer->getImageURL();
         }
 
-        
+
         $html =
             '<div class="editForm">' .
-            '<form method="POST" name="editForm" enctype="multipart/form-data">' .
+            '<form method="POST" name="editForm" id="editForm" enctype="multipart/form-data" onsubmit="return validateAddEditBeer()">' .
             '<label>Available: </label>' .
             '<label class=" switch"><input type=checkbox name="available" ' . $checkbox . '/>' .
             '<span class="slider round"></span>' .
@@ -52,14 +52,14 @@ class EditCard
             '<img src="/images/' . $imageURL . '" alt="' . $name . '" />.
                 </div>' .
             '<br><br>' .
-            '<label>Name: <input type="text" name="name" value="' . $name . '" /></label>' .
-            '<label>Brewery: <input type="text" name="brewery" value="' . $brewery . '" /></label>' .
-            '<label>Category: <input type="text" name="category" value="' . $category . '" /></label>' .
-            '<label>Price(€): <input type="text" name="price" value="' . $price . '" /></label>' .
-            '<label>ABV(%): <input type="text" name="abv" value="' . $abv . '" /></label>' .
-            '<label>Description: <textarea name="description" rows="10" cols="50">' . $description . '</textarea></label>' .
-            '<label>Country: <input type="text" name="country" value="' . $country . '" /></label>' .
-            '<label>Size(ml): <input type="text" name="size" value="' . $size . '" /></label>' .
+            '<label>Name: <input type="text" required name="name" value="' . $name . '" /></label>' .
+            '<label>Brewery: <input type="text" required name="brewery" value="' . $brewery . '" /></label>' .
+            '<label>Category: <input type="text" required name="category" value="' . $category . '" /></label>' .
+            '<label>Price(€): <input type="text" required name="price" value="' . $price . '" /></label>' .
+            '<label>ABV(%): <input type="text" required name="abv" value="' . $abv . '" /></label>' .
+            '<label>Description: <textarea required name="description" rows="10" cols="50">' . $description . '</textarea></label>' .
+            '<label>Country: <input type="text" required name="country" value="' . $country . '" /></label>' .
+            '<label>Size(ml): <input type="text" required name="size" value="' . $size . '" /></label>' .
             '<label>Change image:' .
             '<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />' .
             '<input type="file" name="fileToUpload" id="fileToUpload"></label>' .

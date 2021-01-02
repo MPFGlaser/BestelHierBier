@@ -16,7 +16,7 @@ if($id < 0)
 ?>
 <!DOCTYPE html>
 <html lang="nl">
-
+<script src="../js/formValidation.js"></script>
 <head>
     <title><?php echo $editCard->generateTitle($id) ?></title>
     <meta charset="utf-8">
