@@ -16,6 +16,7 @@ $userController = new UserController();
     <title>Login/Register</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style_mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/loginregister.css">
 </head>
 
 <body>
@@ -39,8 +40,14 @@ $userController = new UserController();
                 <form method="POST" name="registerForm" id="registerForm">
                     <input type="text" required name="userName" placeholder="Username" />
                     <input type="text" required name="email" placeholder="Email Address" id="emailField" /></p>
-                    <input type="password" required name="passWord" placeholder="Password" />
+                    <input type="password" onkeyup="trigger()" required name="passWord" placeholder="Password" id="password"/>
                     <input type="password" required name="passWordConfirm" placeholder="Confirm Password" />
+                    <div class="indicator">
+                        <span class="weak"></span>
+                        <span class="medium"></span>
+                        <span class="strong"></span>
+                    </div>
+                    <div class="text"></div><br>
                     <button type="submit" name="submitRegister" id="registerButton">Register</button>
                 </form>
                 <script>
@@ -83,6 +90,7 @@ $userController = new UserController();
         }
     }
     ?>
+    <script src="/js/passwordStrength.js"></script>
 </body>
 
 </html>
