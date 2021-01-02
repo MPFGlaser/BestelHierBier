@@ -44,7 +44,7 @@ class BeerController extends BaseController
 
     public function getById($id)
     {
-        $sql = "SELECT * FROM beers WHERE id = :id";
+        $sql = "SELECT * FROM beers WHERE id = :id ORDER BY name";
         $params = array('id' => $id);
         $result = $this->db->select($sql, $params);
         if($result == null)
@@ -56,7 +56,7 @@ class BeerController extends BaseController
 
     public function getAll()
     {
-        $sql = "SELECT * FROM beers";
+        $sql = "SELECT * FROM beers ORDER BY name";
         $result = $this->db->select($sql);
 
         $beers = array();
@@ -68,7 +68,7 @@ class BeerController extends BaseController
 
     public function getByName($name)
     {
-        $sql = "SELECT * FROM beers WHERE name = :name";
+        $sql = "SELECT * FROM beers WHERE name = :name ORDER BY name";
         $params = array('name' => $name);
         $result = $this->db->select($sql, $params);
 
@@ -81,7 +81,7 @@ class BeerController extends BaseController
 
     public function getByNameOrBrewery($search)
     {
-        $sql = "SELECT * FROM beers WHERE name LIKE :name OR brewery LIKE :brewery";
+        $sql = "SELECT * FROM beers WHERE name LIKE :name OR brewery LIKE :brewery ORDER BY name";
         $params = array(
             'name' => "%".$search."%",
             'brewery' => "%".$search."%"
@@ -100,7 +100,7 @@ class BeerController extends BaseController
         $filteredValues = implode(",", array_map(function ($string) {
             return '"' . $string . '"';
         }, $filterArray));
-        $sql = "SELECT * FROM beers WHERE category IN ($filteredValues) OR brewery IN ($filteredValues)";
+        $sql = "SELECT * FROM beers WHERE category IN ($filteredValues) OR brewery IN ($filteredValues) ORDER BY name";
         $result = $this->db->select($sql);
 
         $beers = array();
@@ -111,7 +111,7 @@ class BeerController extends BaseController
     }
 
     public function getByPrice($price){
-        $sql = "SELECT * FROM beers WHERE price <= ($price)";
+        $sql = "SELECT * FROM beers WHERE price <= ($price) ORDER BY name";
 
         $result = $this->db->select($sql);
 
@@ -124,7 +124,7 @@ class BeerController extends BaseController
 
     public function getCategories()
     {
-        $sql = "SELECT DISTINCT category FROM beers";
+        $sql = "SELECT DISTINCT category FROM beers ORDER BY category";
         $result = $this->db->select($sql);
         $categories = array();
 
@@ -138,7 +138,7 @@ class BeerController extends BaseController
 
     public function getBreweries()
     {
-        $sql = "SELECT DISTINCT brewery FROM beers";
+        $sql = "SELECT DISTINCT brewery FROM beers ORDER BY brewery";
         $result = $this->db->select($sql);
         $breweries = array();
 
