@@ -1,5 +1,4 @@
 <?php
-// echo phpinfo();
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/error_viewing.php';
 include_once($_SERVER['DOCUMENT_ROOT'] . '/php/Views/header.php');
@@ -37,7 +36,6 @@ $populate = new PopulateFoundItems();
                 echo '<input type="text" placeholder="Search" oninput="debounce(dynamicSearch(this.value, 0), 500)"></input>';
             }
             ?>
-            </br>
             <p>Price</p>
             <?php
             if (isset($_SESSION['User']) && $user->is_admin()){
